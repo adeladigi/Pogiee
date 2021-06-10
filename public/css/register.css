@@ -1,0 +1,154 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+.container {
+ min-height: 100%;
+ min-width: 100%;
+ background-color: #d8e3e7;
+}
+
+span {
+  background-color: #000;
+}
+
+.main {
+ overflow: auto;
+ padding-bottom: 175px;
+ background-color: #d8e3e7;
+}
+
+nav {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h2 {
+  font-family: 'Days One', sans-serif;
+  color: #1b2021;
+}
+
+.banner {
+  display: flex;
+  font-family: 'Racing Sans One', cursive;
+  justify-content: center;
+  position: relative;
+  top: 50px;
+}
+
+.banner h1 {
+ font-family: 'Racing Sans One', cursive;
+ font-size: 40px;
+ color: #1b2021;
+}
+
+.info-box {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 70px;
+  margin: auto;
+  width: 200px;
+}
+
+.footer {
+ background-color: #1b2021;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ position: relative;
+ height: 75px;
+ margin-top: -75px;
+ clear: both;
+}
+
+.foot-icon {
+  color: #fff;
+  font-size: 30px;
+  margin: 10px;
+  cursor:pointer;
+}
+
+.foot-icon:hover {
+  color: #fed049;
+}
+
+.btn {
+  background-color: background-color: #1b2021;
+}
+
+.terms-box {
+  position: relative;
+  top: 20px;
+  font-size: 12px;
+}
+
+.info-box .stripe-button-el { display: none }
+
+#submit-btn {
+  min-width: 200px;
+  position: relative;
+  top:10px;
+}
+
+@media (min-width: 720px) {
+
+  .info-box {
+    width: 400px;
+  }
+
+  .form-control {
+    min-width: 380px;
+  }
+
+  #submit-btn {
+    min-width: 400px;
+    position: relative;
+    top: 20px;
+  }
+
+  .terms-box {
+    position: relative;
+    top: 30px;
+    font-size: 12px;
+  }
+
+}
+
+
+@media (min-width: 1024px) {
+
+  .info-box {
+    top: 100px;
+  }
+
+  .banner {
+    top: 75px;
+  }
+
+  .main {
+   padding-bottom: 275px;
+  }
+
+  .footer {
+   height: 100px;
+   margin-top: -100px;
+   clear: both;
+  }
+
+  .foot-icon {
+    color: #fff;
+    font-size: 30px;
+    margin: 10px;
+  }
+
+
+}

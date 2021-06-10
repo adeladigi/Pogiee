@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+html, body {
+  height: 100%;
+}
+
+nav {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.drop-nav-item {
+  font-size: 20px;
+}
+
+.nav-dropdown-menu {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.nav-dropdown-menu h3 {
+ font-family: 'Open Sans Condensed', sans-serif;
+ font-size: 20px;
+ margin: auto;
+ padding: 5px;
+}
+
+.contanier {
+ min-height: 100%;
+ background-color: #e1e5ea;
+}
+
+.main {
+ overflow: auto;
+ padding-bottom: 100px;
+
+}
+
+.banner {
+  background-color: #e1e5ea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.banner h3 {
+  color: #fff;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.menu-contanier {
+  background-color: #fff;
+}
+
+/* username button */
+
+.username-box {
+  padding: 30px;
+  border-bottom: 1px solid #e1e5ea;
+  cursor:pointer;
+}
+
+.username-box h3 {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.username-drop-menu {
+  padding: 20px;
+  background-color: #e1e5ea;
+}
+
+#username-drop-btn:hover {
+ color: #e1e5ea;
+}
+
+/* email button */
+
+.email-box {
+  padding: 30px;
+  border-bottom: 1px solid #e1e5ea;
+  cursor:pointer;
+}
+
+.email-box h3 {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.email-drop-menu {
+  padding: 20px;
+  background-color: #e1e5ea;
+}
+
+#email-drop-btn:hover {
+ color: #e1e5ea;
+}
+
+/* cancel button */
+
+.cancel-box {
+  padding: 30px;
+  border-bottom: 1px solid #e1e5ea;
+  cursor:pointer;
+}
+
+.cancel-box h3 {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.cancel-drop-menu {
+  padding: 20px;
+  background-color: #e1e5ea;
+}
+
+#cancel-drop-btn:hover {
+ color: #e1e5ea;
+}
+
+/* end of cancel button */
+
+.reactivate-box {
+  padding: 30px;
+  border-bottom: 1px solid #e1e5ea;
+  cursor:pointer;
+}
+
+.reactivate-box h3 {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.reactivate-drop-menu {
+  padding: 20px;
+  background-color: #e1e5ea;
+}
+
+#reactivate-drop-btn:hover {
+  color: #e1e5ea;
+}
+
+.foot-icon {
+  color: #000;
+  font-size: 35px;
+  margin: 10px;
+  cursor:pointer;
+}
+
+.foot-icon:hover {
+  color: #36CAAB;
+}
+
+footer {
+background-color: #fff;
+position: relative;
+height: 100px;
+margin-top: -100px;
+clear: both;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#active-message {
+  margin-top: 5px;
+  color: red;
+}
+
+#cancel-message {
+  margin-top: 5px;
+  color: red;
+}
+
+@media (min-width: 720px){
+
+  .drop-nav-item {
+    font-size: 35px;
+  }
+
+  footer {
+  height: 130px;
+  margin-top: -130px;
+  }
+
+
+}

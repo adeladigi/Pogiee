@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
+
+
+
+* {
+ margin: 0;
+ padding: 0;
+}
+
+
+html, body {
+  height: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px;
+}
+
+.nav-icon {
+  font-size: 25px;
+}
+
+.drop-down-menu {
+font-family: 'PT Sans Narrow', sans-serif;
+text-align: center;
+}
+
+.menu-item:hover {
+  color: #e1e5ea;
+}
+
+.container {
+  min-height: 100%;
+
+}
+
+.main {
+ overflow: auto;
+ padding-bottom: 200px;
+ display: flex;
+ flex-direction: column;
+}
+
+#logo {
+    font-family: 'Days One', sans-serif;
+}
+
+.banner {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+  font-family: 'Days One', sans-serif;
+}
+
+.sell-point {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 25px;
+  margin: 20px;
+  padding-bottom: 10px;
+}
+
+.btn-outline-warning {
+  margin: auto;
+}
+
+.foot-icon {
+  color: #fff;
+  font-size: 30px;
+  margin: 10px;
+  cursor:pointer;
+}
+
+.foot-icon:hover {
+  color: #fed049;
+}
+
+footer {
+ background-color: #000;
+ position: relative;
+ height: 100px;
+ margin-top: -100px;
+ clear: both;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+
+@media (min-width: 720px){
+  .nav-icon {
+    font-size: 30px;
+  }
+
+
+  footer {
+   height: 130px;
+   margin-top: -130px;
+  }
+
+}
+
+@media (min-width: 1024px){
+
+
+  .sell-point {
+    padding-bottom: 30px;
+    max-width: 600px;
+    margin: auto;
+  }
+
+
+}

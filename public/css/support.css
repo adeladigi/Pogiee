@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+
+.container {
+  min-height: 100%;
+}
+
+.main {
+  overflow: auto;
+  padding-bottom: 100px;
+}
+
+.nav-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.nav-item {
+  font-size: 25px;
+}
+
+#logo1-btn {
+  font-family: 'Days One', sans-serif;
+}
+
+#logo2-btn {
+  font-family: 'Days One', sans-serif;
+}
+
+.banner {
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.banner h1{
+  font-size: 45px;
+}
+
+.message-box {
+  margin-top: 20px;
+}
+
+.drop-down-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.drop-down-menu h3 {
+  font-size: 17px;
+}
+
+.drop-down-men a:hover {
+  color: #289672;
+}
+
+.foot-icon {
+  color: #fff;
+  font-size: 30px;
+  margin: 10px;
+  cursor:pointer;
+}
+
+.foot-icon:hover {
+   color: #fed049;
+}
+
+footer {
+    background-color: #000;
+    position: relative;
+    height: 75px;
+    clear: both;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p {
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  padding: 10px;
+}
+
+.nav2 {
+  display: none;
+}
+
+@media (min-width: 720px){
+
+  .nav-item {
+    font-size: 35px;
+  }
+
+  .message-box {
+   width: 450px;
+   margin: auto;
+  }
+
+
+  .banner h1{
+    position: relative;
+    top: 40px;
+  }
+
+  .message-box {
+    position: relative;
+    top: 50px;
+  }
+
+  footer {
+   height: 100px;
+  }
+
+}
+
+
+@media (min-width: 1024px){
+
+nav {
+  display: none;
+}
+
+.nav2 {
+  display: unset;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.nav2 a {
+  text-decoration: none;
+}
+
+#back-to-home{
+ font-weight: bold;
+ cursor:pointer;
+}
+
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up - Pogiee</title>
+
+    <link rel="stylesheet" href="/css/register.css">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- googlefonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Days+One&display=swap" rel="stylesheet">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+
+    <script src="https://js.stripe.com/v3/"></script>
+
+  </head>
+  <body>
+
+
+  <div class="container">
+       <div class="main">
+         <nav>
+           <h2 id="logo-btn" >Pogiee</h2>
+           <button id="log" type="button" class="btn btn-outline-warning">Log In</button>
+         </nav>
+
+          <div class="banner">
+          <h1><%= content %></h1>
+          </div>
+
+
+         <div class="info-box">
+
+        <form action="/register" method="post" >
+          <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">username</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nickname">
+          <div id="emailHelp" class="form-text"></div>
+          </div>
+          <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+          <div id="emailHelp" class="form-text"></div>
+          </div>
+          <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+          </div>
+          <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Full name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1"  name="customerName">
+          <div id="emailHelp" class="form-text"></div>
+          </div>
+
+            <script
+             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+             data-key="pk_test_51IvPm8JuBewLEj8dXDw3BDEzG8SrYzcHdbaxLhSNkJZOSLsZZAa4IJ4Kd7mDJR83Qjj6AMHG7JEbWLQsvcaiH4WW00KoCrzLY9"
+             data-amount="{{ORDER_AMOUNT}}"
+             data-name="Pogiee"
+             data-description="Example charge"
+             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+             data-locale="auto"
+             data-label="Start free trial"
+             data-panel-label="Subscribe"
+             data-currency="usd">
+            </script>
+
+            <button id="submit-btn" class="btn btn-dark">start</button>
+
+             <div class="terms-box">
+              <p>By clicking Log In, you agree to our <a href="/terms">Terms</a>. Learn how we process your data in our <a href="/privacy">Privacy Policy</a> and <a href="/cookies">Cookie Policy</a></p>
+             </div>
+
+
+        </form>
+
+
+
+         </div>
+
+
+
+       </div>
+  </div>
+
+
+<footer class="footer">
+  <i class="fab fa-twitter-square foot-icon"></i>
+  <i class="fab fa-instagram foot-icon"></i>
+  <i class="fab fa-facebook-square foot-icon"></i>
+</footer>
+
+<script src="register.js"type="text/javascript">
+
+</script>
+
+  </body>
+</html>

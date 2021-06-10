@@ -1,0 +1,452 @@
+body {
+  background-image: url("https://wallpaperaccess.com/full/1145374.jpg");
+  background: cover;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  background-color: #151515;
+  border-radius: 2%;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  top: 400px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#made {
+  color: #fff;
+}
+
+.word-box {
+ color: #fed049;
+ margin: auto;
+ position: relative;
+ top: 200px;
+}
+
+.word-box h1 {
+  font-size: 30px;
+  font-family: 'Zilla Slab Highlight', cursive;
+}
+.nav-bar {
+  background-color: #151515;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drop-down-div {
+  background-color: #151515;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.drop-down-div .ca {
+  color: #fff;
+  font-size: 20px;;
+  margin: 10px;
+}
+
+.drop-down-div .ca:hover {
+  color: #29bb89;
+}
+
+.settings-menu {
+  background-color: #151515;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+  min-height: 120px;
+  padding-top: 13px;
+}
+
+
+.desktop-menu {
+  display: none;
+}
+
+.fa-bars {
+  font-size: 30px;
+  font-weight: bold;
+  color:  #fed049;
+  margin: 20px;
+}
+
+.input-box {
+  font-size: 20px;
+  margin: auto;
+  position: relative;
+  top: 250px;
+}
+
+.submit-button {
+background-color: #fed049;
+color: black;
+font-size: 15px;
+height: 40px;
+margin: auto;
+position: relative;
+top: 300px;
+width: ;
+}
+
+.press-play {
+  background-color: #fed049;
+  font-size: 10px;
+  height: 40px;
+  width: 100px;
+  margin:auto;
+  position: relative;
+  top: 300px;
+}
+
+.play-again {
+  background-color: #fed049;
+  font-size: 15px;
+  height: 40px;
+  margin: auto;
+  position: relative;
+  top: 200px;
+}
+
+.ent-screen {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 530px;
+}
+
+.box {
+  color: #fff;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  bottom: 250px;
+  padding: 20px 20px;
+}
+
+
+.box h2 {
+  font-family: 'Audiowide', cursive;
+  font-size: 30px;
+  color: #fff;
+  margin: auto;
+}
+.box p {
+  font-size: 30px;
+  font-family: 'Anton', sans-serif;
+}
+
+.hide1 {
+  visibility: hidden;
+}
+
+.notHidden {
+  visibility: visible;
+}
+
+.sound-icon {
+  color: #fed049;
+  font-size: 30px;
+  position: relative;
+  top: 225px;
+  left: 50px;
+}
+.foot-icon {
+  color: #fff;
+  font-size: 30px;
+  margin: 10px;
+  cursor:pointer;
+}
+
+.foot-icon:hover {
+  color: #fed049;
+}
+
+#playAgain-btn {
+  visibility: hidden;
+}
+
+.second-menu {
+  display: none;
+}
+
+#correct-way {
+color: #289672;
+}
+
+#wrong-way {
+color: #f05945;
+}
+
+
+/* end of mobile */
+
+@media (min-width: 720px){
+
+  .second-menu {
+    display: unset;
+  }
+
+  .nav-bar {
+    padding: 4% 3%;
+    justify-content: flex-start;
+    padding-top: ;
+    padding-bottom: ;
+  }
+  .nav-bar .fa-bars {
+   display: none;
+  }
+
+  .nav-bar .ha:hover {
+    color: #289672;
+  }
+
+  .drop-down-div {
+   display: none;
+  }
+
+  .settings-menu {
+    display: none;
+  }
+
+  .desktop-menu {
+    background-color: #151515;
+    display: unset;
+    width: 250px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .desktop-menu h5 {
+   margin: auto;
+  }
+
+
+  .word-box {
+   position: relative;
+   top: 320px;
+  }
+
+  .word-box h1 {
+    font-size: 50px;
+    font-family: 'Zilla Slab Highlight', cursive;
+  }
+
+  .press-play {
+    background-color: #fed049;
+    font-size: 15px;
+    height: 60px;
+    margin:auto;
+    width: 100px;
+    top: 450px;
+  }
+
+  .play-again {
+    background-color: #fed049;
+    font-size: 25px;
+    height: 50px;
+    margin: auto;
+    position: relative;
+    top: 330px;
+    width: 150px;
+  }
+
+  .submit-button {
+    background-color: #fed049;
+    color: black;
+    font-size: 20px;
+    height: 50px;
+    position: relative;
+    margin: auto;
+    top: 500px;
+    width: 100px;
+    }
+
+    .input-box {
+      font-size: 25px;
+      margin: auto;
+      position: relative;
+      top: 400px;
+    }
+
+
+    .sound-icon {
+      color: #fed049;
+      font-size: 40px;
+      position: relative;
+      top: 430px;
+      left: 150px;
+    }
+
+
+    .ent-screen {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      top: 530px;
+    }
+
+    .box {
+      color: #fff;
+      border: 5px solid #fed049;
+      margin: auto;
+      bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 20px;
+      height: 300px;
+      opacity: 0.6;
+      width: 250px;
+    }
+
+
+    .box h2 {
+      font-family: 'Audiowide', cursive;
+      font-size: 45px;
+      color: #fff;
+      margin: auto;
+      margin-bottom: 10px;
+    }
+    .box p {
+      font-size: 30px;
+      font-family: 'Anton', sans-serif;
+      margin: auto;
+    }
+
+    footer {
+      top: 800px;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+
+    .second-menu {
+      color: #fff;
+    }
+
+    .second-menu .ha {
+      font-size: 30px;
+      margin: 10px;
+    }
+}
+/* end of tablet layout*/
+
+@media (min-width: 1320px) {
+
+  .second-menu {
+
+  }
+
+  .nav-bar {
+    padding: 1.5% 3%;
+    justify-content: flex-start;
+    padding-top: ;
+    padding-bottom: ;
+  }
+  .nav-bar .fa-bars {
+   display: none;
+  }
+
+  .second-menu .ha {
+    font-size: 20px;
+    margin: 10px;
+  }
+
+  .word-box {
+   position: relative;
+   top: 200px;
+  }
+
+  .word-box h1 {
+    font-size: 40px;
+    font-family: 'Zilla Slab Highlight', cursive;
+  }
+
+  .submit-button {
+  background-color: #fed049;
+  color: black;
+  font-size: 15px;
+  height: 40px;
+  position: relative;
+  margin: auto;
+  top: 350px;
+  width: ;
+  }
+
+  .press-play {
+    background-color: #fed049;
+    font-size: 10px;
+    height: 40px;
+    width: 100px;
+    margin:auto;
+    position: relative;
+    top: 300px;
+  }
+
+  .play-again {
+    background-color: #fed049;
+    font-size: 15px;
+    height: 40px;
+    margin: auto;
+    position: relative;
+    top: 200px;
+    width: 100px;
+  }
+
+
+  .input-box {
+    font-size: 25px;
+    margin: auto;
+    position: relative;
+    top: 300px;
+  }
+
+
+  .sound-icon {
+    color: #fed049;
+    font-size: 40px;
+    position: relative;
+    top: 320px;
+    left: 550px;
+  }
+
+  .box {
+    color: #fff;
+    border: 7px solid #fed049;
+    bottom: 130px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+    height: 300px;
+    opacity: 0.6;
+    width: 400px;
+  }
+
+
+  .box h2 {
+    font-family: 'Audiowide', cursive;
+    font-size: 45px;
+    color: #fff;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  .box p {
+    color: #fed049;
+    font-size: 30px;
+    font-family: 'Anton', sans-serif;
+    margin: auto;
+    margin-top: 10px;
+  }
+
+}

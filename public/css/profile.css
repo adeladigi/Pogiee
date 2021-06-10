@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: #e1e5ea;
+}
+
+nav {
+width: 100%;
+height: ;
+background-color: #fff;
+display: flex;
+align-items: center;
+}
+
+nav h1 {
+font-size: 20px
+}
+
+div.progress {
+  background-color: #fff;
+}
+
+.hide {
+  display: none;
+}
+
+.profile-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  margin: 15px;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.fa-angle-left {
+  font-size: 20px
+}
+
+
+.fa-cog {
+  font-size: 20px;
+  display: inline;
+}
+
+.container {
+  min-height: 100%;
+}
+
+.main {
+  overflow: auto;
+  text-align: center;
+  padding-bottom: 200px;
+}
+
+.main h2 {
+  font-size: 20px;
+}
+
+.user-box {
+  background-color: #fff;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.game-data {
+  background-color: #fff;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.drop-down-menu {
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 5px;
+}
+
+.drop-down-menu h2 {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#account-btn:hover {
+ color: #e1e5ea;
+}
+
+#logout-btn:hover {
+ color: #e1e5ea;
+}
+
+.footer {
+  background-color: #fff;
+  position:relative;
+  height: 100px;
+  margin-top: -100px;
+  clear: both;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foot-icon {
+  font-size: 35px;
+  margin: 10px;
+  cursor:pointer;
+}
+
+.foot-icon:hover {
+  color: #36CAAB;
+}
+
+.chart {
+  width: 300px;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.myChart {
+
+}
+
+.profile-info{
+  margin: 10px;
+  padding: 1px;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.item-name {
+margin-left: 10px;
+}
+
+#log-out {
+  color: #000;
+  text-decoration: none;
+}
+
+.desktop-menu {
+  display: none;
+}
+
+.info-item {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+@media (min-width: 720px){
+
+  .fa-angle-left {
+    font-size: 40px
+  }
+
+
+  .fa-cog {
+    font-size: 40px;
+    display: inline;
+  }
+
+  .container {
+    min-height: 100%;
+  }
+
+  .main {
+    overflow: auto;
+    text-align: center;
+    padding-bottom: 200px;
+  }
+
+  nav h1 {
+  font-size: 30px
+  }
+
+}
+
+@media (min-width: 1024px){
+
+  nav {
+  width: 100%;
+  height: ;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  }
+
+  nav h1 {
+  font-size: 20px
+  }
+
+  .profile-banner {
+   display: none;
+  }
+
+  .desktop-menu {
+    display: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+.div-1 {
+  display: flex;
+  justify-content: space-between;
+}
+.div-1 h3 {
+  margin: 10px;
+}
+
+.div-2 h3 {
+  margin: 10px;
+}
+
+}

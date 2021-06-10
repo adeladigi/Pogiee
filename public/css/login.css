@@ -1,0 +1,147 @@
+* {
+ margin: 0;
+ padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+nav h3 {
+  margin: 7px;
+  font-family: 'Days One', sans-serif;
+  font-size: 20px;
+}
+
+.logo-box {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-btn {
+  display: flex;
+  justify-content: space-around;
+}
+
+.container {
+   min-height: 100%;
+   min-width: 100%;
+   background-color: #d8e3e7;
+}
+
+.main {
+  overflow: auto;
+  padding-bottom: 320px;
+}
+
+.login-box {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 135px;
+}
+
+
+.footer {
+  background-color: #1b2021;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 75px;
+  margin-top: -75px;
+}
+
+.foot-icon {
+  color: #fff;
+  margin: 10px;
+  font-size: 30px;
+  cursor:pointer;
+}
+
+.foot-icon:hover {
+  color: #fed049;
+}
+
+.terms-box {
+  margin: auto;
+  position: relative;
+  top: 150px;
+  font-size: 12px;
+  width: 200px;
+}
+
+.failed-login-box {
+ background-color: #eec4c4;
+ color: red;
+ width: 250px;
+ margin: auto;
+ position: relative;
+ top: 120px;
+ padding: 5px;
+ display: none;
+}
+
+.failed-login-box p{
+  margin: auto;
+}
+
+@media (min-width: 720px){
+  .login-box {
+    position: relative;
+    top: 185px;
+  }
+
+  .form-control {
+    min-width: 380px;
+  }
+
+  #submit-btn {
+   min-width: 380px;
+   position: relative;
+   top: 20px;
+  }
+
+  .terms-box {
+    margin: auto;
+    position: relative;
+    top: 225px;
+    font-size: 12px;
+    width: 350px;
+  }
+}
+
+
+
+
+
+@media (min-width: 1024px){
+  .footer {
+   height: 100px;
+   margin-top: -100px;
+   clear: both;
+  }
+
+
+  .login-box {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 250px;
+  }
+
+  .terms-box {
+    margin: auto;
+    position: relative;
+    top: 280px;
+    font-size: 12px;
+    width: 350px;
+  }
+}
