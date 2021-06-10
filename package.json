@@ -20,5 +20,26 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0",
     "stripe": "^8.150.0"
-  }
+  },
+  "name": "pogiee-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adeladigi/adeladigi-app.git"
+  },
+  "author": "Marcos Caraballo",
+  "license": "ISC",
+  "engines": {
+    "node": "15.11.0"
+  },
+  "bugs": {
+    "url": "https://github.com/adeladigi/adeladigi-app/issues"
+  },
+  "homepage": "https://github.com/adeladigi/adeladigi-app#readme",
+  "description": ""
 }
