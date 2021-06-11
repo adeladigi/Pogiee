@@ -37,6 +37,18 @@ nav {
  padding: 5px;
 }
 
+.dropdown-menu-item {
+  cursor: pointer;
+}
+
+.dropdown-menu-item:hover {
+    color: #36CAAB;
+}
+
+#hamberger-btn {
+  cursor: pointer;
+}
+
 .contanier {
  min-height: 100%;
  background-color: #e1e5ea;
@@ -44,8 +56,7 @@ nav {
 
 .main {
  overflow: auto;
- padding-bottom: 100px;
-
+ padding-bottom: 330px;
 }
 
 .banner {
@@ -83,7 +94,7 @@ nav {
 }
 
 #username-drop-btn:hover {
- color: #e1e5ea;
+ color: #36CAAB;
 }
 
 /* email button */
@@ -104,7 +115,7 @@ nav {
 }
 
 #email-drop-btn:hover {
- color: #e1e5ea;
+ color: #36CAAB;
 }
 
 /* cancel button */
@@ -125,7 +136,7 @@ nav {
 }
 
 #cancel-drop-btn:hover {
- color: #e1e5ea;
+ color: #36CAAB;
 }
 
 /* end of cancel button */
@@ -146,7 +157,7 @@ nav {
 }
 
 #reactivate-drop-btn:hover {
-  color: #e1e5ea;
+  color: #36CAAB;
 }
 
 .foot-icon {
@@ -192,5 +203,17 @@ align-items: center;
   margin-top: -130px;
   }
 
+
+}
+
+@media (min-width: 1024px){
+
+  .main {
+   padding-bottom: 400px;
+  }
+
+  #hamberger-btn {
+    font-size: 25px;
+  }
 
 }

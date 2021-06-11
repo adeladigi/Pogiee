@@ -140,10 +140,7 @@ div.progress {
 margin-left: 10px;
 }
 
-#log-out {
-  color: #000;
-  text-decoration: none;
-}
+
 
 .desktop-menu {
   display: none;
@@ -197,11 +194,20 @@ margin-left: 10px;
   font-size: 20px
   }
 
+  .desk-nav-item {
+    cursor:pointer;
+  }
+
+  .desk-nav-item:hover {
+     color: #36CAAB;
+  }
+
   .profile-banner {
    display: none;
   }
 
   .desktop-menu {
+    font-family: 'Open Sans Condensed', sans-serif;
     display: unset;
     display: flex;
     justify-content: space-between;

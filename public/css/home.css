@@ -18,11 +18,13 @@ nav {
 #logo1-btn {
   color: #1b2021;
   font-family: 'Days One', sans-serif;
+  cursor:pointer;
 }
 
 #logo2-btn {
   color: #1b2021;
   font-family: 'Days One', sans-serif;
+  cursor:pointer;
 }
 
 #Banner-content {
@@ -53,7 +55,7 @@ font-size: 15px;
 
 .main {
   overflow: auto;
-  padding-bottom: 420px;
+  padding-bottom:520px;
   text-align: center;
   background-color: #d8e3e7;
 }
@@ -99,10 +101,10 @@ font-size: 15px;
 .footer {
  background-color: #1b2021;
  position: relative;
- height: 75px;
+ height: 100px;
  margin-top: -75px;
  display: flex;
- justify-content: center;
+ flex-direction: column;
  align-items: center;
 }
 
@@ -121,7 +123,25 @@ font-size: 15px;
   display: none;
 }
 
-@media (min-width: 720px) {
+
+.copyright-box {
+  color: #fff;
+}
+
+.copyright-box a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.copyright-box a:hover {
+    color: #fed049;
+}
+
+@media (min-width: 770px) {
+
+  .main {
+    padding-bottom: 650px;
+  }
 
   #logo {
     font-size: 35px;
@@ -161,6 +181,13 @@ font-size: 15px;
 
   nav {
     display: none;
+  }
+
+  .main {
+    overflow: auto;
+    padding-bottom:640px;
+    text-align: center;
+    background-color: #d8e3e7;
   }
 
   .desktop-nav {

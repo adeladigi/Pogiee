@@ -38,7 +38,7 @@ nav h3 {
 
 .main {
   overflow: auto;
-  padding-bottom: 320px;
+  padding-bottom: 500px;
 }
 
 .login-box {
@@ -52,10 +52,11 @@ nav h3 {
 .footer {
   background-color: #1b2021;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 75px;
+  height: 100px;
   margin-top: -75px;
 }
 
@@ -68,6 +69,19 @@ nav h3 {
 
 .foot-icon:hover {
   color: #fed049;
+}
+
+.copyright-box {
+  color: #fff;
+}
+
+.copyright-box a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.copyright-box a:hover {
+    color: #fed049;
 }
 
 .terms-box {
@@ -91,6 +105,10 @@ nav h3 {
 
 .failed-login-box p{
   margin: auto;
+}
+
+#logo-btn {
+  cursor:pointer;
 }
 
 @media (min-width: 720px){
@@ -123,6 +141,12 @@ nav h3 {
 
 
 @media (min-width: 1024px){
+
+  .main {
+    padding-bottom: 600px;
+  }
+
+
   .footer {
    height: 100px;
    margin-top: -100px;

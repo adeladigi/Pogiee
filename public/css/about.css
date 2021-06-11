@@ -36,7 +36,6 @@ text-align: center;
 
 .container {
   min-height: 100%;
-
 }
 
 .main {
@@ -86,8 +85,22 @@ footer {
  margin-top: -100px;
  clear: both;
  display: flex;
+ flex-direction: column;
  justify-content: center;
  align-items: center;
+}
+
+.copyright-box {
+  color: #fff;
+}
+
+.copyright-box a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.copyright-box a:hover {
+    color: #fed049;
 }
 
 

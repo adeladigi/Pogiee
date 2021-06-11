@@ -27,6 +27,41 @@ logoutBtn.addEventListener("click",function(){
 });
 
 
+// section 3# desktop buttons
+const desktopBackBtn = document.getElementById("desktop-back-btn");
+const desktopAccountBtn = document.getElementById("desktop-account-btn");
+const desktoplogoutBtn = document.getElementById("desktop-logout-btn");
+
+desktopBackBtn.addEventListener("click",function(){
+  window.location.href = "/game";
+});
+
+desktopAccountBtn.addEventListener("click",function(){
+  window.location.href = "/account";
+});
+
+desktoplogoutBtn.addEventListener("click",function(){
+  window.location.href = "/logout";
+});
+
+
+// section 4#
+const titterBtn = document.getElementById("titter-btn");
+const instagramBtn = document.getElementById("instagram-btn");
+const facebookBtn = document.getElementById("facebook-btn");
+
+titterBtn.addEventListener("click",function(){
+  window.location.href = "https://twitter.com/Pogiee3";
+});
+
+instagramBtn.addEventListener("click",function(){
+  window.location.href = "https://www.instagram.com/pogiee_games/";
+});
+
+facebookBtn.addEventListener("click",function(){
+  window.location.href = "https://www.facebook.com/Pogiee-109822717993232/";
+});
+
 
 
 

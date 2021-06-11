@@ -308,17 +308,17 @@ if(newPoints >= 0 && newPoints < 1000){
  level = "Newbie";
 }else if(newPoints >= 1000 && newPoints < 2000){
   level = "Novice";
-}else if(newPoints >= 2000 && newPoints < 3000){
+}else if(newPoints >= 2000 && newPoints < 4000){
   level = "Amateur";
-}else if(newPoints >= 3000 && newPoints < 4000){
+}else if(newPoints >= 4000 && newPoints < 6000){
   level = "Exceptional";
-}else if(newPoints >= 4000 && newPoints < 5000){
+}else if(newPoints >= 6000 && newPoints < 9000){
   level = "Scholar";
-}else if(newPoints >= 5000 && newPoints < 6000){
+}else if(newPoints >= 9000 && newPoints < 1300){
   level = "Lengendary";
-}else if(newPoints >= 6000 && newPoints < 7000){
+}else if(newPoints >= 13000 && newPoints < 17000){
   level = "Mythic";
-}else if(newPoints >= 7000){
+}else if(newPoints >= 25000){
   level = "Big Brain";
 }
 

@@ -339,6 +339,15 @@ color: #f05945;
       font-size: 30px;
       margin: 10px;
     }
+
+    #desktop-settings-btn {
+      cursor:pointer;
+    }
+
+  #desktop-charts-btn{
+    cursor:pointer;
+  }
+
 }
 /* end of tablet layout*/
 

@@ -16,6 +16,13 @@ joinBtn.addEventListener("click",function(){
   window.location.href = "/register";
 });
 
+// logo button
+const  logoBtn = document.getElementById("logo");
+
+logoBtn.addEventListener("click",function(){
+  window.location.href = "/";
+});
+
 
 
 //1# support button

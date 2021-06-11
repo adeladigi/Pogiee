@@ -20,7 +20,7 @@ span {
 
 .main {
  overflow: auto;
- padding-bottom: 175px;
+ padding-bottom: 230px;
  background-color: #d8e3e7;
 }
 
@@ -62,13 +62,15 @@ nav h2 {
 .footer {
  background-color: #1b2021;
  display: flex;
+ flex-direction: column;
  justify-content: center;
  align-items: center;
  position: relative;
- height: 75px;
+ height: 100px;
  margin-top: -75px;
  clear: both;
 }
+
 
 .foot-icon {
   color: #fff;
@@ -93,13 +95,34 @@ nav h2 {
 
 .info-box .stripe-button-el { display: none }
 
+.copyright-box {
+  color: #fff;
+}
+
+.copyright-box a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.copyright-box a:hover {
+    color: #fed049;
+}
+
 #submit-btn {
   min-width: 200px;
   position: relative;
   top:10px;
 }
 
+#logo-btn  {
+  cursor:pointer;
+}
+
 @media (min-width: 720px) {
+
+  .main {
+    padding-bottom: 350px;
+  }
 
   .info-box {
     width: 400px;
@@ -135,7 +158,7 @@ nav h2 {
   }
 
   .main {
-   padding-bottom: 275px;
+   padding-bottom: 350px;
   }
 
   .footer {
