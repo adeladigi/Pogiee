@@ -39,7 +39,8 @@ const userSchema = new mongoose.Schema ({
  points: Number,
  level: String,
  status: String,
- subID: String
+ subID: String,
+ priceID: String
 });
 
 
@@ -51,6 +52,19 @@ passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
+app.get("/restart", function(req, res){
+
+
+  res.render("restart");
+});
+
+app.post("/restart", function(req, res){
+
+
+  res.redirect("/restart")
+});
 
 
 app.get("/", function(req, res){
@@ -90,6 +104,7 @@ app.get("/profile", function(req, res){
   let nextLevel = "";
 
   if(req.isAuthenticated()){
+
 
     User.findById(req.user.id, function(err, foundUser){
       if(err){
@@ -269,31 +284,62 @@ app.post("/register", function(req, res){
 
 //Post to Login Page
 app.post("/login", function(req, res){
+
   const user = new User({
     username: req.body.username,
     password: req.body.password,
   });
 
-  req.login(user, function(err){
-    if(err){
-      console.log(err);
-    }
-    else{
-        passport.authenticate("local")(req, res, function(){
+     User.findOne({ username: req.body.username}, function (err, foundUser) {
+                if(err){
+                   console.log(err)
+                }else{
 
-          res.redirect("/game");
-        });
+                     if(!foundUser){
 
-    }
+                       res.redirect("/login");
+                     }else if(foundUser){
 
-  });
+                       const plan = stripe.plans.retrieve(foundUser.priceID, function(err, plan){
+                         if(err){
+                           console.log(err)
+                           res.render("login");
+                         }else{
 
+                             if(plan.active === "false"){
+                              res.render("test");
+                             }else{
 
-      //  passport.authenticate("local")(req, res, function(){
-      //    res.redirect("/game");
-      //  });
+                               req.login(user, function(err){
+                                 if(err){
+                                   console.log(err);
+                                 }
+                                 else{
+                                     passport.authenticate("local")(req, res, function(){
 
+                                       res.redirect("/game");
+                                     });
+
+                                 }
+
+                               });
+                             //end of inner else statement
+                             }
+
+                         }
+
+                       });
+
+                     }
+                 // end of first else statement
+                }
+             // and of user find function
+            });
+
+ // end of login post route
 });
+
+
 
 
 app.post("/points", function(req, res){
@@ -471,10 +517,7 @@ const subscribeCustomerToPlan = async (customerId, priceId, databaseID) => {
     });
 
 
-
-
-
-   User.findByIdAndUpdate(databaseID, { subID: subscription.id}, function(err, foundUser){
+   User.findByIdAndUpdate(databaseID, { subID: subscription.id, priceID: subscription.plan.id}, function(err, foundUser){
      if(err){
        console.log(err)
      }
@@ -485,4 +528,5 @@ const subscribeCustomerToPlan = async (customerId, priceId, databaseID) => {
      }
    });
 
+// end of subscribeCustomerToPlan function
 }

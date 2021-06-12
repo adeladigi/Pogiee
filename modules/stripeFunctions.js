@@ -1,3 +1,31 @@
+const plan = stripe.plans.retrieve("price_1IwpSgJuBewLEj8dciuVUIHm", function(err, plan){
+  if(err){
+    console.log(err)
+  }else{
+
+      if(plan.active === "false"){
+       res.render("test");
+      }else{
+
+        req.login(user, function(err){
+          if(err){
+            console.log(err);
+          }
+          else{
+              passport.authenticate("local")(req, res, function(){
+
+                res.redirect("/game");
+              });
+
+          }
+
+        });
+      //end of inner else statement
+      }
+
+  }
+
+});
 
 
 
@@ -179,4 +207,49 @@ source: stripeToken,
         }
    });
   }
+});
+
+
+
+
+
+
+///full scope
+User.findOne({ username: req.body.username}, function (err, foundUser) {
+     if(err){
+       console.log(err)
+     }else{
+
+       const plan = stripe.plans.retrieve(foundUser.priceID, function(err, plan){
+         if(err){
+           console.log(err)
+           res.render("login");
+         }else{
+
+             if(plan.active === "false"){
+              res.render("test");
+             }else{
+
+               req.login(user, function(err){
+                 if(err){
+                   console.log(err);
+                 }
+                 else{
+                     passport.authenticate("local")(req, res, function(){
+
+                       res.redirect("/game");
+                     });
+
+                 }
+
+               });
+             //end of inner else statement
+             }
+
+         }
+
+       });
+
+
+     }
 });
