@@ -1,0 +1,14 @@
+
+.card-box {
+  background-color: grey;
+  display: flex;
+  border-bottom: 1px solid #fff;
+}
+
+.card-brand {
+  margin: 5px;
+}
+
+.card-last {
+  margin: 5px;
+}

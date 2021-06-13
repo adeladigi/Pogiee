@@ -56,14 +56,73 @@ passport.deserializeUser(User.deserializeUser());
 
 app.get("/restart", function(req, res){
 
+  const paymentMethods = stripe.paymentMethods.list({customer: "cus_JeqKq2F0LYQqTW",type: 'card',}, function(err, cards){
+    if(err){
+      consoel.log(err)
+    }else{
 
-  res.render("restart");
+      res.render("restart",{cards: cards.data});
+    }
+  });
+
+
 });
 
 app.post("/restart", function(req, res){
 
+  if(req.body.hidden.slice(0,4) === "new"){
 
-  res.redirect("/restart")
+    var param = {};
+    param.card = {
+      number: req.body.creditNumber,
+      exp_month: req.body.creditExpires.slice(0,2),
+      exp_year: req.body.creditExpires.slice(2),
+      cvc: req.body.creditCvc,
+    }
+
+      stripe.tokens.create(param, function(err, token){
+       if(err){
+         console.log("err: "+err);
+       }if(token){
+         console.log("Success: "+JSON.stringify(token, null, 2));
+         // calling add card function
+         addCardToCustomer("cus_JeqKq2F0LYQqTW", token.id);
+       }else{
+         console.log("Somethings wrong!");
+       }
+
+      });
+
+
+    var addCardToCustomer = function(customerID, tokenID){
+      stripe.customers.createSource(customerID,{source: tokenID} , function(err, card){
+       if(err){
+         console.log("err: "+err);
+       }if(card){
+         console.log("Success: "+JSON.stringify(card, null, 2));
+       }else{
+         console.log("Somethings wrong!");
+       }
+
+      });
+    }
+
+   res.redirect("/restart")
+   
+  }else if(req.body.hidden.slice(0,4) === "card"){
+    const cardID = req.body.hidden;
+
+
+    const deleted = stripe.customers.deleteSource(
+        "cus_JeqKq2F0LYQqTW",
+        cardID,
+      );
+
+    res.redirect("/restart")
+  }
+
+
+
 });
 
 
