@@ -40,7 +40,8 @@ const userSchema = new mongoose.Schema ({
  level: String,
  status: String,
  subID: String,
- priceID: String
+ priceID: String,
+ customerID: String
 });
 
 
@@ -55,18 +56,32 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.get("/restart", function(req, res){
-
-  const paymentMethods = stripe.paymentMethods.list({customer: "cus_JeqKq2F0LYQqTW",type: 'card',}, function(err, cards){
+if(req.isAuthenticated()){
+  User.findOne({ username: req.user.username }, function (err, foundUser) {
     if(err){
-      consoel.log(err)
+      console.log(err)
     }else{
 
-      res.render("restart",{cards: cards.data});
+      const paymentMethods = stripe.paymentMethods.list({customer: foundUser.customerID, type: 'card',}, function(err, cards){
+        if(err){
+          console.log(err)
+        }else{
+
+          res.render("restart",{cards: cards.data});
+        }
+      });
+
     }
   });
+}else{
+  res.redirect("/login");
+}
+
 
 
 });
+
+
 
 app.post("/restart", function(req, res){
 
@@ -80,18 +95,28 @@ app.post("/restart", function(req, res){
       cvc: req.body.creditCvc,
     }
 
-      stripe.tokens.create(param, function(err, token){
-       if(err){
-         console.log("err: "+err);
-       }if(token){
-         console.log("Success: "+JSON.stringify(token, null, 2));
-         // calling add card function
-         addCardToCustomer("cus_JeqKq2F0LYQqTW", token.id);
-       }else{
-         console.log("Somethings wrong!");
-       }
+    User.findOne({ username: req.user.username }, function (err, foundUser) {
+      if(err){
+        console.log(err)
+      }else{
 
-      });
+        stripe.tokens.create(param, function(err, token){
+         if(err){
+           console.log("err: "+err);
+         }if(token){
+           console.log("Success: "+JSON.stringify(token, null, 2));
+           // calling add card function
+           addCardToCustomer(foundUser.customerID, token.id);
+           res.redirect("/restart");
+         }else{
+           console.log("Somethings wrong!");
+         }
+
+        });
+
+
+      }
+    });
 
 
     var addCardToCustomer = function(customerID, tokenID){
@@ -107,20 +132,26 @@ app.post("/restart", function(req, res){
       });
     }
 
-   res.redirect("/restart")
-   
+
   }else if(req.body.hidden.slice(0,4) === "card"){
     const cardID = req.body.hidden;
 
+    User.findOne({ username: req.user.username }, function (err, foundUser) {
+      if(err){
+        console.log(err)
+      }else{
 
-    const deleted = stripe.customers.deleteSource(
-        "cus_JeqKq2F0LYQqTW",
-        cardID,
-      );
+        const deleted = stripe.customers.deleteSource(
+           foundUser.customerID,
+            cardID,
+          );
 
-    res.redirect("/restart")
+        res.redirect("/restart");
+
+      }
+    });
+
   }
-
 
 
 });
@@ -576,7 +607,7 @@ const subscribeCustomerToPlan = async (customerId, priceId, databaseID) => {
     });
 
 
-   User.findByIdAndUpdate(databaseID, { subID: subscription.id, priceID: subscription.plan.id}, function(err, foundUser){
+   User.findByIdAndUpdate(databaseID, { subID: subscription.id, priceID: subscription.plan.id, customerID: customerId}, function(err, foundUser){
      if(err){
        console.log(err)
      }
