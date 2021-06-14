@@ -174,7 +174,26 @@ app.get("/login", function(req, res){
 
 app.get("/game", function(req, res){
  if(req.isAuthenticated()){
-   res.render("game", {content: "Welcome to Pogiee!"});
+
+   const plan = stripe.plans.retrieve(req.user.priceID, function(err, plan){
+     if(err){
+       console.log(err)
+       res.render("login");
+     }else{
+
+         if(plan.active === false){
+          res.render("/restart");
+        }else if(plan.active === true){
+
+          res.render("game", {content: "Welcome to Pogiee!"});
+         //end of inner else statement
+         }
+
+     }
+
+   });
+
+
  }
  else{
   res.redirect("/login");
@@ -194,54 +213,71 @@ app.get("/profile", function(req, res){
   let nextLevel = "";
 
   if(req.isAuthenticated()){
-
-
-    User.findById(req.user.id, function(err, foundUser){
+    const plan = stripe.plans.retrieve(req.user.priceID, function(err, plan){
       if(err){
         console.log(err)
-      }
-      else{
-        if(foundUser){
-         if(foundUser.level === "Newbie"){
-           nextLevelPoints = 1000;
-           nextLevel = "Novice";
+        res.render("login");
+      }else{
 
-         }else if(foundUser.level === "Novice"){
-           nextLevelPoints = 2000;
-           nextLevel = "Amateur";
-         }else if(foundUser.level === "Amateur"){
-           nextLevelPoints = 3000;
-           nextLevel = "Exceptional";
-         }else if(foundUser.level === "Exceptional"){
-           nextLevelPoints = 4000;
-           nextLevel = "Scholar";
-         }else if(foundUser.level === "Scholar"){
-           nextLevelPoints = 5000;
-           nextLevel = "Lengendary";
-         }else if(foundUser.level === "Lengendary"){
-           nextLevelPoints = 6000;
-           nextLevel = "Mythic";
-         }else if(foundUser.level === "Mythic"){
-           nextLevelPoints = 7000;
-           nextLevel = "Big Brain";
-         }else if(foundUser.level === "Big Brain"){
-           nextLevelPoints = 0;
-           nextLevel = "?";
-         }else{
-           console.log("Error: sonething wrong with level");
-         }
+          if(plan.active === false){
+           res.render("/restart");
+         }else if(plan.active === true){
 
-          res.render("profile", {
-            username: foundUser.nickname,
-             email: foundUser.username,
-             points: foundUser.points,
-             level: foundUser.level,
-             next: nextLevelPoints,
-             nextLevel: nextLevel,
+           User.findById(req.user.id, function(err, foundUser){
+             if(err){
+               console.log(err)
+             }
+             else{
+               if(foundUser){
+                if(foundUser.level === "Newbie"){
+                  nextLevelPoints = 1000;
+                  nextLevel = "Novice";
+
+                }else if(foundUser.level === "Novice"){
+                  nextLevelPoints = 2000;
+                  nextLevel = "Amateur";
+                }else if(foundUser.level === "Amateur"){
+                  nextLevelPoints = 3000;
+                  nextLevel = "Exceptional";
+                }else if(foundUser.level === "Exceptional"){
+                  nextLevelPoints = 4000;
+                  nextLevel = "Scholar";
+                }else if(foundUser.level === "Scholar"){
+                  nextLevelPoints = 5000;
+                  nextLevel = "Lengendary";
+                }else if(foundUser.level === "Lengendary"){
+                  nextLevelPoints = 6000;
+                  nextLevel = "Mythic";
+                }else if(foundUser.level === "Mythic"){
+                  nextLevelPoints = 7000;
+                  nextLevel = "Big Brain";
+                }else if(foundUser.level === "Big Brain"){
+                  nextLevelPoints = 0;
+                  nextLevel = "?";
+                }else{
+                  console.log("Error: sonething wrong with level");
+                }
+
+                 res.render("profile", {
+                   username: foundUser.nickname,
+                    email: foundUser.username,
+                    points: foundUser.points,
+                    level: foundUser.level,
+                    next: nextLevelPoints,
+                    nextLevel: nextLevel,
+                  });
+               }
+             }
            });
-        }
+
+          //end of inner else statement
+          }
+
       }
+
     });
+
+
   }
   else{
    res.redirect("/login");
@@ -279,18 +315,36 @@ app.get("/about", function(req, res){
 
 app.get("/account", function(req, res){
   if(req.isAuthenticated()){
-    let activeMessage1 = ""
-    let activeMessage2 = "subscription is already active!"
 
-    let cancelMessage1 = ""
-    let cancelMessage2 = "subscription is already canceled!"
+           const plan = stripe.plans.retrieve(req.user.priceID, function(err, plan){
+             if(err){
+               console.log(err)
+               res.render("login");
+             }else{
+
+                 if(plan.active === false){
+                  res.render("/restart");
+                }else if(plan.active === true){
+                   let activeMessage1 = ""
+                   let activeMessage2 = "subscription is already active!"
+
+                   let cancelMessage1 = ""
+                   let cancelMessage2 = "subscription is already canceled!"
 
 
-       if(req.user.status === "Active"){
-         res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1});
-       }else if(req.user.status === "Canceled"){
-         res.render("account", {activeMessage: activeMessage1, cancelMessage: cancelMessage2});
-       }
+                      if(req.user.status === "Active"){
+                        res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1});
+                      }else if(req.user.status === "Canceled"){
+                        res.render("account", {activeMessage: activeMessage1, cancelMessage: cancelMessage2});
+                      }
+
+                 //end of inner else statement
+                 }
+
+             }
+
+           });
+
 
   }
   else{
@@ -384,7 +438,6 @@ app.post("/login", function(req, res){
                 if(err){
                    console.log(err)
                 }else{
-
                      if(!foundUser){
 
                        res.redirect("/login");
@@ -395,10 +448,6 @@ app.post("/login", function(req, res){
                            console.log(err)
                            res.render("login");
                          }else{
-
-                             if(plan.active === "false"){
-                              res.render("test");
-                             }else{
 
                                req.login(user, function(err){
                                  if(err){
@@ -411,10 +460,8 @@ app.post("/login", function(req, res){
                                      });
 
                                  }
-
+                                 // end of login function
                                });
-                             //end of inner else statement
-                             }
 
                          }
 
@@ -425,6 +472,7 @@ app.post("/login", function(req, res){
                 }
              // and of user find function
             });
+
 
  // end of login post route
 });
