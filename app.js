@@ -9,6 +9,7 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const nodeMailer = require("nodemailer");
 const mailGun = require("nodemailer-mailgun-transport");
+const { VLC } = require('node-vlc-http');
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -53,6 +54,57 @@ passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
+
+const vlc = new VLC({
+  host,
+  port,
+  username,
+  password,
+  // update automatically status and playlist of VLC, default true.
+  autoUpdate,
+  // how many times per seconds (in ms) node-vlc-http will update the status of VLC, default 1000/30 ~ 33ms (30fps)
+  tickLengthMs,
+  // checks that browse, status and playlist have changed since the last update of one of its elements,
+  // if it the case fire browsechange, statuschange or playlistchange event. default true.
+  changeEvents,
+  // max tries at the first connection before throwing an error set it to -1 for infinite try, default -1
+  maxTries,
+  // interval between each try in ms, default 1000
+  triesInterval
+});
+
+
+
+
+
+
+
+app.get("/check", function(req, res){
+
+
+  const plan = stripe.plans.retrieve(req.user.priceID, function(err, plan){
+    if(err){
+      console.log(err)
+      res.redirect("login");
+    }else{
+
+        if(plan.active === false){
+         res.redirect("/restart");
+       }else if(plan.active === true){
+
+         res.redirect("/game");
+        //end of inner else statement
+        }
+
+    }
+
+  });
+
+
+
+});
 
 
 app.get("/restart", function(req, res){
@@ -175,24 +227,7 @@ app.get("/login", function(req, res){
 app.get("/game", function(req, res){
  if(req.isAuthenticated()){
 
-   const plan = stripe.plans.retrieve(req.user.priceID, function(err, plan){
-     if(err){
-       console.log(err)
-       res.render("login");
-     }else{
-
-         if(plan.active === false){
-          res.render("/restart");
-        }else if(plan.active === true){
-
-          res.render("game", {content: "Welcome to Pogiee!"});
-         //end of inner else statement
-         }
-
-     }
-
-   });
-
+  res.render("game", {content: "Welcome to Pogiee!"});
 
  }
  else{
@@ -456,7 +491,7 @@ app.post("/login", function(req, res){
                                  else{
                                      passport.authenticate("local")(req, res, function(){
 
-                                       res.redirect("/game");
+                                       res.redirect("/check");
                                      });
 
                                  }
