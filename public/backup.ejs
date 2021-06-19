@@ -1,0 +1,23 @@
+<div class="add-card-div">
+  <p>Add new credit / debit card</p>
+  <form action="/restart" method="post">
+    <input name="creditNumber" class="cc-number" type="tel" pattern="\d*" maxlength="16" placeholder="Card Number">
+    <input name="creditExpires" class="cc-expires" type="tel" pattern="\d*" maxlength="7" placeholder="MM / YY">
+    <input name="creditCvc" class="cc-cvc" type="tel" pattern="\d*" maxlength="4" placeholder="CVC">
+    <input type="hidden" name="hidden" value="new" >
+    <button type="submit">Add Card</button>
+  </form>
+</div>
+
+<%   cards.forEach(function(cards){  %>
+ <div class="card-box">
+   <h4 class="card-brand" ><%= cards.card.brand %></h4>
+   <h4 class="card-last" ><%= cards.card.last4 %></h4>
+   <form action="/restart" method="post">
+    <input type="hidden" name="hidden" value=<%= cards.id %>>
+    <button type="submit" name="button">delete card</button>
+   </form>
+
+ </div>
+
+<%   });   %>

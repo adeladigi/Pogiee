@@ -9,7 +9,7 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const nodeMailer = require("nodemailer");
 const mailGun = require("nodemailer-mailgun-transport");
-const { VLC } = require('node-vlc-http');
+
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -93,7 +93,7 @@ if(req.isAuthenticated()){
         if(err){
           console.log(err)
         }else{
-          
+
           res.render("restart",{cards: cards.data});
         }
       });
@@ -113,7 +113,7 @@ if(req.isAuthenticated()){
 app.post("/restart", function(req, res){
 
   if(req.body.hidden.slice(0,4) === "new"){
-
+ console.log(req.body)
     var param = {};
     param.card = {
       number: req.body.creditNumber,
@@ -121,6 +121,8 @@ app.post("/restart", function(req, res){
       exp_year: req.body.creditExpires.slice(2),
       cvc: req.body.creditCvc,
     }
+
+
 
     User.findOne({ username: req.user.username }, function (err, foundUser) {
       if(err){
@@ -178,8 +180,27 @@ app.post("/restart", function(req, res){
       }
     });
 
-  }
+  }else if(req.body.hidden.slice(0,5) === "start"){
 
+    const subscription = stripe.subscriptions.retrieve(req.user.subID);
+
+    stripe.subscriptions.update(req.user.subID, {
+        cancel_at_period_end: false,
+        proration_behavior: 'create_prorations',
+
+      });
+
+      User.findByIdAndUpdate(req.user.id, { status: "Active" }, function(err, foundUser){
+        if(err){
+          console.log(err)
+        }
+        else{
+          if(foundUser){
+             res.redirect("/restart");
+          }
+        }
+      });
+ }
 
 });
 

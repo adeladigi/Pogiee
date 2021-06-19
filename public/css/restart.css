@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -28,15 +30,19 @@ nav {
 nav h3 {
   font-size: 20px;
   margin: 5px;
+  font-family: 'Days One', sans-serif;
 }
 
 .welcome-back-banner {
+  padding-top: 40px;
   padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .plan-box {
   background-color: #F6F6F6;
-  border-bottom: 2px solid #AAAAAA;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,8 +54,9 @@ nav h3 {
 
 .plan-box2 {
   background-color: #F6F6F6;
+  border-top: 2px solid #AAAAAA;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   padding: 20px;
   margin-right: 20px;
@@ -60,6 +67,7 @@ nav h3 {
   background-color: #F6F6F6;
   border-top: 2px solid #AAAAAA;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
@@ -71,32 +79,61 @@ nav h3 {
   margin: 5px;
 }
 
+.how-to-1 {
+  justify-content: center;
+}
+
+.how-to-1 p {
+  font-size: 15px;
+}
+
 .plan-box2 h4 {
  margin: 5px;
 }
 
 .terms-box {
-  padding: 30px;
+  padding-bottom: 100px;
 }
 
-.terms-box p{
+.reactivate-div {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.terms-box p {
  font-size: 15px;
+ padding-bottom: 100px;
+ margin: 20px;
 }
 
 .botton-box {
-  padding: 20px;
  display: flex;
- justify-content: center;
+ justify-content: space-between;
  align-items: center;
 }
 
-#add-card-btn {
+.blue {
   color: blue;
+  margin: 10px;
+  align-items: flex-end;
 }
 
 .card-info {
   display: flex;
   justify-content: center;
+  padding-bottom: 10px;
+}
+
+.foot-icon {
+  color: #fff;
+  font-size: 30px;
+  margin: 10px;
+  cursor:pointer;
+}
+
+.foot-icon:hover {
+  color: #fed049;
 }
 
 footer {
@@ -104,34 +141,51 @@ footer {
  position: relative;
  height: 100px;
  margin-top: -100px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.card-box {
-  background-color: grey;
-  display: flex;
-  border-bottom: 1px solid #fff;
+footer a {
+  text-decoration: none;
+  color: #fff;
 }
 
-.card-brand {
-  margin: 5px;
+.d-grid {
+  margin: auto;
 }
 
-.card-last {
-  margin: 5px;
+@media (min-width: 720px){
+  nav h3 {
+    font-size: 25px;
+    margin: 5px;
+  }
+
+  .plan-box {
+    justify-content:
+    padding: 20px;
+    margin: auto;
+    max-width: 400px;
+  }
+
+  .plan-box2 {
+    justify-content:
+    padding: 20px;
+    margin: auto;
+    max-width: 400px;
+  }
+
+  .add-card-dropdown {
+    margin: auto;
+    padding: 20px;
+    max-width: 400px;
+  }
+
+  .terms-box p {
+   font-size: 15px;
+   padding-top: 20px;
+   padding-bottom: 100px;
+   margin: auto;
+   max-width: 400px;
+  }
 }
