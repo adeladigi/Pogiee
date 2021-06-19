@@ -35,8 +35,68 @@ nav h3 {
 }
 
 .plan-box {
-  padding-bottom: 40px;
-  border: 1px solid #000;
+  background-color: #F6F6F6;
+  border-bottom: 2px solid #AAAAAA;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.plan-box2 {
+  background-color: #F6F6F6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.add-card-dropdown {
+  background-color: #F6F6F6;
+  border-top: 2px solid #AAAAAA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.drop-item {
+  margin: 5px;
+}
+
+.plan-box2 h4 {
+ margin: 5px;
+}
+
+.terms-box {
+  padding: 30px;
+}
+
+.terms-box p{
+ font-size: 15px;
+}
+
+.botton-box {
+  padding: 20px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+#add-card-btn {
+  color: blue;
+}
+
+.card-info {
+  display: flex;
+  justify-content: center;
 }
 
 footer {

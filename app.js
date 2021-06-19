@@ -56,31 +56,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-
-const vlc = new VLC({
-  host,
-  port,
-  username,
-  password,
-  // update automatically status and playlist of VLC, default true.
-  autoUpdate,
-  // how many times per seconds (in ms) node-vlc-http will update the status of VLC, default 1000/30 ~ 33ms (30fps)
-  tickLengthMs,
-  // checks that browse, status and playlist have changed since the last update of one of its elements,
-  // if it the case fire browsechange, statuschange or playlistchange event. default true.
-  changeEvents,
-  // max tries at the first connection before throwing an error set it to -1 for infinite try, default -1
-  maxTries,
-  // interval between each try in ms, default 1000
-  triesInterval
-});
-
-
-
-
-
-
-
 app.get("/check", function(req, res){
 
 
@@ -118,7 +93,7 @@ if(req.isAuthenticated()){
         if(err){
           console.log(err)
         }else{
-
+          
           res.render("restart",{cards: cards.data});
         }
       });
