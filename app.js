@@ -55,6 +55,14 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+
+
+
+app.get("/faq", function(req, res){
+    res.render("faq");
+});
+
+
 app.get("/check", function(req, res){
 
 
