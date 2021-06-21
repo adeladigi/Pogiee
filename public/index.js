@@ -9,7 +9,6 @@ chartBtn.addEventListener("click", function(){
 });
 
 
-
 const soundButton = document.querySelector(".sound-icon");
 
 

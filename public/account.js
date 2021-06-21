@@ -1,5 +1,4 @@
 
-
 //nav dropdown menu mobile
 const $hambergerBtn = $("#hamberger-btn");
 const $mobileDropMenu = $(".nav-dropdown-menu");

@@ -10,7 +10,6 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const nodeMailer = require("nodemailer");
 const mailGun = require("nodemailer-mailgun-transport");
 
-
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();

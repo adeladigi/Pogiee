@@ -1,5 +1,4 @@
 
-
 // section 1# hamberger menu button
 
 let $dropDownMenu = $(".drop-down-menu");
