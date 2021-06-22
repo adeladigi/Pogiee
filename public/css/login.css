@@ -168,4 +168,10 @@ nav h3 {
     font-size: 12px;
     width: 350px;
   }
+
+  footer {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+  
 }

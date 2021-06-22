@@ -35,6 +35,7 @@ nav h3 {
 .nav-item {
   margin: 10px;
   font-size: 25px;
+  cursor:pointer;
 }
 
 .drop-down-menu {
@@ -48,6 +49,7 @@ nav h3 {
   font-family: 'Days One', sans-serif;
   margin: auto;
   padding: 7px;
+  cursor:pointer;
 }
 
 .drop-down-menu h3:hover {
@@ -80,6 +82,7 @@ nav h3 {
 
 .question-box h3 {
   font-family: 'Days One', sans-serif;
+  cursor:pointer;
 }
 
 .question-box h3:hover {
