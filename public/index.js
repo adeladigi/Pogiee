@@ -1,11 +1,20 @@
 const key1 = "7varsmvw7093es7imjrb6wcqcrk4n25ir3t3jevsqveokyjis";
 const key2 = "1j18nuflxvd7whbkzlf4pr7t3xo0e4zqy7sqo03831f7vrjmz";
 
-//temp button
+//charts button desktop
 var chartBtn = document.getElementById("desktop-charts-btn");
 
 chartBtn.addEventListener("click", function(){
-   window.location.href = "/restart";
+   //window.location.href = "/game";
+   alert("Coming soon!");
+});
+
+//charts button desktop
+var mobileChartBtn = document.getElementById("mobile-charts-btn");
+
+mobileChartBtn.addEventListener("click", function(){
+   //window.location.href = "/game";
+   alert("Coming soon!");
 });
 
 

@@ -77,7 +77,6 @@ app.get("/check", function(req, res){
         if(plan.active === false){
          res.redirect("/restart");
        }else if(plan.active === true){
-
          res.redirect("/game");
         //end of inner else statement
         }
