@@ -224,6 +224,12 @@ app.get("/register", function(req, res){
   res.render("register", {content: "Sign up"});
 });
 
+app.get("/first", function(req, res){
+  errFlag = false;
+  res.redirect("/login");
+});
+
+
 errFlag = false;
 
 app.get("/login", function(req, res){

@@ -13,11 +13,9 @@ logo.addEventListener("click",function(){
 
 const errMessage = document.querySelector(".failed-login-box");;
 
-
-
 if( errMessage.length === ""){
     // do nothing
   }else{
-    //background-color: #eec4c4;
+      //background-color: #eec4c4;
       errMessage.style.visibility = "visible";
     }
