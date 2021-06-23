@@ -30,7 +30,7 @@ signUpBtn.addEventListener("click",function(){
 const logInBtn = document.getElementById("login-btn");
 
 logInBtn.addEventListener("click",function(){
-  window.location.href = "/first";
+  window.location.href = "/login";
 });
 
 

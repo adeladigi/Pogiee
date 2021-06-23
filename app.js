@@ -41,7 +41,8 @@ const userSchema = new mongoose.Schema ({
  status: String,
  subID: String,
  priceID: String,
- customerID: String
+ customerID: String,
+ loginStatus: Boolean
 });
 
 
@@ -94,6 +95,7 @@ app.get("/check", function(req, res){
 app.get("/restart", function(req, res){
 if(req.isAuthenticated()){
   User.findOne({ username: req.user.username }, function (err, foundUser) {
+
     if(err){
       console.log(err)
     }else{
@@ -224,20 +226,14 @@ app.get("/register", function(req, res){
   res.render("register", {content: "Sign up"});
 });
 
-app.get("/first", function(req, res){
-  errFlag = false;
-  res.redirect("/login");
-});
-
-
-errFlag = false;
 
 app.get("/login", function(req, res){
 //Incorrect username or password.
-if(errFlag === false){
-  res.render("login", {content: "Log In", message: ""});
-}else{
+
+if(req.query.error === "true"){
   res.render("login", {content: "Log In", message: "Incorrect username or password."});
+}else{
+  res.render("login", {content: "Log In", message: ""});
 }
 });
 
@@ -491,8 +487,8 @@ app.post("/login", function(req, res){
                    console.log(err)
                 }else{
                      if(!foundUser){
-                       errFlag = true;
-                       res.redirect("/login");
+
+                       res.redirect("/login?error=true");
                      }else if(foundUser){
 
                        const plan = stripe.plans.retrieve(foundUser.priceID, function(err, plan){
@@ -506,9 +502,9 @@ app.post("/login", function(req, res){
                                    console.log(err);
                                  }
                                  else{
-                                     errFlag = true;
-                                     passport.authenticate("local", { failureRedirect: "/login"})(req, res, function(){
-                                       errFlag = false;
+
+                                     passport.authenticate("local", { failureRedirect: "/login?error=true"})(req, res, function(){
+
                                        res.redirect("/check");
                                      });
 

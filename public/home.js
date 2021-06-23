@@ -23,11 +23,11 @@ regButton.addEventListener("click",function(){
 });
 
 loginButton.addEventListener("click",function(){
-  window.location.href = "/first";
+  window.location.href = "/login";
 });
 
 loginButton2.addEventListener("click",function(){
-  window.location.href = "/first";
+  window.location.href = "/login";
 });
 
 menuButton.addEventListener("click",function(){
