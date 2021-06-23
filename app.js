@@ -224,9 +224,15 @@ app.get("/register", function(req, res){
   res.render("register", {content: "Sign up"});
 });
 
-app.get("/login", function(req, res){
+errFlag = false;
 
-  res.render("login", {content: "Log In"});
+app.get("/login", function(req, res){
+//Incorrect username or password.
+if(errFlag === false){
+  res.render("login", {content: "Log In", message: ""});
+}else{
+  res.render("login", {content: "Log In", message: "Incorrect username or password."});
+}
 });
 
 app.get("/game", function(req, res){
@@ -479,7 +485,7 @@ app.post("/login", function(req, res){
                    console.log(err)
                 }else{
                      if(!foundUser){
-
+                       errFlag = true;
                        res.redirect("/login");
                      }else if(foundUser){
 
@@ -494,8 +500,9 @@ app.post("/login", function(req, res){
                                    console.log(err);
                                  }
                                  else{
-                                     passport.authenticate("local")(req, res, function(){
-
+                                     errFlag = true;
+                                     passport.authenticate("local", { failureRedirect: "/login"})(req, res, function(){
+                                       errFlag = false;
                                        res.redirect("/check");
                                      });
 
@@ -707,4 +714,10 @@ const subscribeCustomerToPlan = async (customerId, priceId, databaseID) => {
    });
 
 // end of subscribeCustomerToPlan function
+}
+
+
+// If wrong password function
+function wrongpassword(){
+  errFlag = true;
 }

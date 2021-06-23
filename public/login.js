@@ -9,3 +9,15 @@ signUpButton.addEventListener("click",function(){
 logo.addEventListener("click",function(){
   window.location.href = "/";
 });
+
+
+const errMessage = document.querySelector(".failed-login-box");;
+
+
+
+if( errMessage.length === ""){
+    // do nothing
+  }else{
+    //background-color: #eec4c4;
+      errMessage.style.visibility = "visible";
+    }
