@@ -38,10 +38,12 @@
                <button id="sign-up-btn" type="button" class="btn btn-outline-dark">Sign up</button>
              </div>
            </nav>
+            <% if( error === "true"){ %>
+              <div class="failed-login-box">
+                 <p class="error-message">Incorrect username or password.</p>
+              </div>
+          <%  }   %>
 
-            <div class="failed-login-box">
-               <p class="error-message"><%= message %></p>
-            </div>
            <div class="login-box">
 
              <form action="/login" method="post">

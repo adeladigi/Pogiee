@@ -93,7 +93,7 @@ nav h3 {
 }
 
 .failed-login-box {
- visibility: hidden;
+ background-color: #eec4c4;
  color: red;
  width: 250px;
  margin: auto;

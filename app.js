@@ -229,11 +229,8 @@ app.get("/register", function(req, res){
 app.get("/login", function(req, res){
 //Incorrect username or password.
 
-if(req.query.error === "true"){
-  res.render("login", {content: "Log In", message: "Incorrect username or password."});
-}else{
-  res.render("login", {content: "Log In", message: ""});
-}
+res.render("login", {content: "Log In", error: req.query.error});
+
 });
 
 app.get("/game", function(req, res){
