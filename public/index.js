@@ -1,6 +1,8 @@
 const key1 = "7varsmvw7093es7imjrb6wcqcrk4n25ir3t3jevsqveokyjis";
 const key2 = "1j18nuflxvd7whbkzlf4pr7t3xo0e4zqy7sqo03831f7vrjmz";
 
+
+
 //charts button desktop
 var chartBtn = document.getElementById("desktop-charts-btn");
 
@@ -37,7 +39,7 @@ var playAgain = document.getElementById("playAgain-btn");
 var pointsDisplay = document.getElementById("points-display");
 var missedWords = document.getElementById("missed-words-display");
 var capturedWords = document.getElementById("words-Captured-display");
-var points =  0;
+var points =  90;
 var wrongWords = 0;
 
 var easyMode = false;
@@ -587,14 +589,13 @@ const ship = {
    points: points,
 };
 
- fetch("/points", {
-   method: "POST",
+fetch("/points", {
+    method: "POST",
+    body: JSON.stringify(ship),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }});
 
-   body: JSON.stringify(ship),
-   headers: {
-    //'content-type' : 'application/x-www-form-urlencoded'
-    "content-type": "application/json"
-   }
- });
 
 }

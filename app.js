@@ -9,6 +9,8 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const nodeMailer = require("nodemailer");
 const mailGun = require("nodemailer-mailgun-transport");
+var cors = require('cors');
+
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -20,6 +22,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use(bodyParser.json());
+
 app.use(session({
   secret: "Our little secret",
   resave: false,
@@ -28,6 +32,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+ app.use(cors());
 
 mongoose.connect("mongodb+srv://admin-juniorsnow14:alto1017@pogieecluster.knjcu.mongodb.net/userDB", { useNewUrlParser: true });
 mongoose.set("useCreateIndex", true);
@@ -58,7 +64,9 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-
+app.post("/com", function(req, res){
+  console.log(req.body.points);
+});
 
 app.get("/faq", function(req, res){
     res.render("faq");
@@ -441,7 +449,7 @@ app.post("/support", function(req, res){
  sendMail(email, subject, text);
 
   res.redirect("/support");
-})
+});
 
 app.post("/register", function(req, res){
   const productId = process.env.PRODUCT_ID;
@@ -526,11 +534,11 @@ app.post("/login", function(req, res){
 
 app.post("/points", function(req, res){
 let currentPoints = req.user.points;
-let points = 90;
+let points = req.body.points;
 let level = "";
 let data = req.body;
 
-const newPoints = currentPoints + 100;
+const newPoints = currentPoints + points;
 
 if(newPoints >= 0 && newPoints < 1000){
  level = "Newbie";
