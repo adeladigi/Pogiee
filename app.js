@@ -65,7 +65,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.post("/com", function(req, res){
-  console.log(req.body.points);
+  console.log(req.body.word);
 });
 
 app.get("/faq", function(req, res){

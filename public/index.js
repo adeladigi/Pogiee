@@ -39,7 +39,7 @@ var playAgain = document.getElementById("playAgain-btn");
 var pointsDisplay = document.getElementById("points-display");
 var missedWords = document.getElementById("missed-words-display");
 var capturedWords = document.getElementById("words-Captured-display");
-var points =  90;
+var points =  0;
 var wrongWords = 0;
 
 var easyMode = false;
@@ -597,5 +597,25 @@ fetch("/points", {
         'Content-Type': 'application/json'
       }});
 
-
 }
+
+
+
+
+function apiGetWord(){
+
+  const ship = {
+     word: cat,
+  };
+
+  fetch("/com", {
+      method: "POST",
+      body: JSON.stringify(ship),
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }});
+}
+
+
+apiGetWord();
