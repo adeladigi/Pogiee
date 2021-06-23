@@ -41,8 +41,7 @@ const userSchema = new mongoose.Schema ({
  status: String,
  subID: String,
  priceID: String,
- customerID: String,
- loginStatus: Boolean
+ customerID: String
 });
 
 
