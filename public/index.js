@@ -1,7 +1,3 @@
-const key1 = "7varsmvw7093es7imjrb6wcqcrk4n25ir3t3jevsqveokyjis";
-const key2 = "1j18nuflxvd7whbkzlf4pr7t3xo0e4zqy7sqo03831f7vrjmz";
-
-
 
 //charts button desktop
 var chartBtn = document.getElementById("desktop-charts-btn");
@@ -270,7 +266,7 @@ function displayWord(wordList) {
     randomWord = wordList[arrayNumber];
 
      //current function being used for api calls
-    ajaxISS(randomWord, key1)
+    apiGetWord(randomWord);
 
     wordList.splice(arrayNumber, 1);
     //console.log("new word:"+ randomWord);
@@ -533,51 +529,7 @@ function noErrors()
 
 
 
-// new api request function
-async function ajaxISS(word, key){
 
-let errorCounter = 0
-  const apiRequstUrl = "https://api.wordnik.com/v4/word.json/"+word+"/audio?useCanonical=false&limit=10&api_key="+key;
-  const response = await fetch(apiRequstUrl);
-
-  try {
-
-    const data = await response.json();
-    if(!data[1].fileUrl)
-    {
-       throw new SyntaxError("NO file On Name!")
-    }
-    else
-    {
-      errorCounter = 0
-      // asigning data to variables
-      const selectedWord = data[0].word;
-      const wordAudio = data[1].fileUrl;
-
-      //asigning sound file
-      audioUrl = wordAudio;
-
-      //testing
-    //  audioUrl = obj001[1].sound;
-
-      //play word
-      let audio = new Audio(audioUrl)
-      audio.play();
-    }
-
-  }catch(e)
-  {
-      if(errorCounter !== 30){
-        errorCounter ++;
-        console.log("API  ERROR / File Not Found: "+e)
-        setTimeout(ajaxISS(randomWord, key2), 1000);
-      }else{
-        errorCounter = 0;
-      }
-
-  }
-
-}
 
 
 
@@ -602,10 +554,10 @@ fetch("/points", {
 
 
 
-function apiGetWord(){
+function apiGetWord(word){
 
   const ship = {
-     word: cat,
+     word: word,
   };
 
   fetch("/com", {
@@ -614,8 +566,10 @@ function apiGetWord(){
       headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-        }});
+        }}).then(response => response.json())
+           .then(function(data){
+            let audio = new Audio(data.voice);
+            audio.play();
+           });
+          
 }
-
-
-apiGetWord();

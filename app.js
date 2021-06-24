@@ -65,7 +65,55 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.post("/com", function(req, res){
-  console.log(req.body.word);
+
+ ajaxISS(req.body.word, process.env.API_KEY1, process.env.API_KEY2);
+  // new api request function
+  async function ajaxISS(word, key1, key2){
+
+  let errorCounter = 0
+    const apiRequstUrl = "https://api.wordnik.com/v4/word.json/"+word+"/audio?useCanonical=false&limit=10&api_key="+key1;
+    const response = await fetch(apiRequstUrl);
+
+    try {
+
+      const data = await response.json();
+      if(!data[1].fileUrl)
+      {
+         throw new SyntaxError("NO file On Name!")
+      }
+      else
+      {
+        errorCounter = 0
+        // asigning data to variables
+        const selectedWord = data[0].word;
+        const wordAudio = data[1].fileUrl;
+
+        //asigning sound file
+        audioUrl = wordAudio;
+
+        //testing
+      //  audioUrl = obj001[1].sound;
+
+        //play word
+        //let audio = new Audio(audioUrl)
+        //audio.play();
+         res.json({voice: audioUrl});
+      }
+
+    }catch(e)
+    {
+        if(errorCounter !== 30){
+          errorCounter ++;
+          console.log("API  ERROR / File Not Found: "+e)
+          setTimeout(ajaxISS(randomWord, key2), 1000);
+        }else{
+          errorCounter = 0;
+        }
+
+    }
+
+  }
+
 });
 
 app.get("/faq", function(req, res){
