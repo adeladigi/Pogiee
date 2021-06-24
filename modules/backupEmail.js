@@ -78,14 +78,15 @@ passport.deserializeUser(User.deserializeUser());
 const transporter2 = nodeMailer.createTransport({
  service: "Gmail",
    auth: {
-      user: process.env.USER_MAIL_KEY,
-      pass: process.env.PASS_MAIL_KEY
+      user: "pogiee.ny@gmail.com",
+      pass: "alto1017"
    }
 
  });
 
 
-const JWT_SECRET = process.env.JWT_SECRET;
+
+const JWT_SECRET = "canadadry";
 
 
 app.get("/forgot-password", (req, res, next )=>{
@@ -116,7 +117,7 @@ app.post("/forgot-password", (req, res, next)=>{
     if(err){
       console.log(err);
     }else{
-      
+     console.log(foundUser.nickname);
      sendingBoy(foundUser._id)
     }
   });
