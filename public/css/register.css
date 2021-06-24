@@ -118,6 +118,22 @@ nav h2 {
   cursor:pointer;
 }
 
+
+.failed-login-box {
+ background-color: #eec4c4;
+ color: red;
+ width: 250px;
+ margin: auto;
+ position: relative;
+ top: 60px;
+ padding: 5px;
+ text-align: center;
+}
+
+.failed-login-box p{
+  margin: auto;
+}
+
 @media (min-width: 720px) {
 
   .main {
@@ -171,6 +187,11 @@ nav h2 {
     color: #fff;
     font-size: 30px;
     margin: 10px;
+  }
+
+  .failed-login-box {
+   position: relative;
+   top: 80px;
   }
 
 

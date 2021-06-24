@@ -39,9 +39,15 @@ mongoose.connect("mongodb+srv://admin-juniorsnow14:alto1017@pogieecluster.knjcu.
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
- email: String,
+ email: {
+   type: String,
+   unique: true 
+ },
  password: String,
- nickname: String,
+ nickname: {
+   type: String,
+   unique: true
+ },
  points: Number,
  level: String,
  status: String,
@@ -277,7 +283,7 @@ app.get("/", function(req, res){
 
 app.get("/register", function(req, res){
 
-  res.render("register", {content: "Sign up"});
+  res.render("register", {content: "Sign up",  error: req.query.error});
 });
 
 
@@ -511,7 +517,7 @@ app.post("/register", function(req, res){
  User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active"}, req.body.password, function(err, user){
        if(err){
          console.log(err)
-         res.redirect("/register");
+         res.redirect("/register?error=true");
        }
        else{
           createCustomer(priceId, stripeToken, customerEmail, customerName, user._id);
