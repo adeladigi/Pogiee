@@ -147,14 +147,18 @@ font-size: 15px;
  top: 150px;
 }
 
-@media (min-width: 770px) {
+#menu-btn {
+  font-size: 25px;
+}
+
+@media (min-width: 720px) {
 
   .main {
     padding-bottom: 650px;
   }
 
   #logo {
-    font-size: 35px;
+    font-size: 40px;
   }
 
   #menu-btn {
