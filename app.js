@@ -124,6 +124,7 @@ app.post("/forgot-password", (req, res, next)=>{
         sendingBoy(foundUser._id)
       }
 
+
     }
   });
 
@@ -200,7 +201,7 @@ function doTheRest(email){
 
   try {
    const payload = jwt.verify(token, secret);
-   res.render("reset-password", {email: email});
+   res.render("reset-password", {error: req.query.error, match: req.query.match });
   }catch(error){
    console.log(error.message);
    res.send(error.message);
@@ -262,10 +263,6 @@ function stage3(){
       }
     });
 
-
-
-   // user.password = password;
-    //res.send(user);
 
   }catch(error){
    console.log(error.message);
