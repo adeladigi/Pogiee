@@ -95,6 +95,11 @@ nav h2 {
 
 .info-box .stripe-button-el { display: none }
 
+.info-box {
+  display: flex;
+  flex-direction: column;
+}
+
 .copyright-box {
   color: #fff;
 }
@@ -132,6 +137,12 @@ nav h2 {
 
 .failed-login-box p{
   margin: auto;
+}
+
+.error-array-div {
+  margin: auto;
+  color: red;
+  position:
 }
 
 @media (min-width: 720px) {

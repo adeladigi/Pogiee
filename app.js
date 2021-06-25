@@ -40,14 +40,14 @@ mongoose.connect("mongodb+srv://admin-juniorsnow14:alto1017@pogieecluster.knjcu.
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
- email: {
+   email: {
    type: String,
-   unique: true
+   unique: false
  },
  password: String,
  nickname: {
    type: String,
-   unique: true
+   unique: false
  },
  points: Number,
  level: String,
@@ -721,7 +721,7 @@ app.post("/register", function(req, res){
   let databaseID;
 
 
- User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", resetToken: "123"}, req.body.password, function(err, user){
+ User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", email: req.body.username}, req.body.password, function(err, user){
        if(err){
          console.log(err)
          res.redirect("/register?error=true");
