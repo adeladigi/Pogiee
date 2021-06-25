@@ -222,7 +222,7 @@ const password2 = req.body.password2;
 User.findOne({ _id: id}, function (err, foundUser) {
   if(err){
     console.log(err);
-    res.send("Invalid id");
+    res.send("Invalid link");
   }else{
       stage3();
   }
@@ -255,7 +255,6 @@ function stage3(){
             }else{
               //do nogthing
               user.save();
-              res.send(user);
             }
         });
 
@@ -263,10 +262,11 @@ function stage3(){
       }
     });
 
-
+   res.redirect("/login");
   }catch(error){
    console.log(error.message);
-   res.send(error.message);
+   //res.send(error.message);
+   res.send("Invalid link");
   }
 
 }
