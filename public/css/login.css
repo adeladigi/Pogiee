@@ -114,6 +114,11 @@ nav h3 {
 
 }
 
+.forgot-link {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
 @media (min-width: 720px){
   .login-box {
     position: relative;
