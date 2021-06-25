@@ -122,6 +122,7 @@ app.post("/forgot-password", (req, res, next)=>{
         res.redirect("/forgot-password?error=true");
       }else{
         sendingBoy(foundUser._id)
+        console.log(foundUser);
       }
 
 
@@ -133,6 +134,8 @@ app.post("/forgot-password", (req, res, next)=>{
 
 function sendingBoy(newID){
   // User exist and now create a one time link valid for 15 minutes
+
+
 const secret =  JWT_SECRET;
 
   const payload  = {
@@ -190,7 +193,7 @@ app.get("/reset-password/:id/:token", (req, res, next)=>{
  User.findOne({ _id: id}, function (err, foundUser) {
    if(err){
      console.log(err);
-     res.send("Invalid id");
+     res.send("Invalid link");
    }else{
       doTheRest(foundUser.username);
    }
@@ -206,7 +209,8 @@ function doTheRest(email){
    res.render("reset-password", {error: req.query.error, match: req.query.match });
   }catch(error){
    console.log(error.message);
-   res.send(error.message);
+   //res.send(error.message);
+   res.send("Invalid link");
   }
 }
 
