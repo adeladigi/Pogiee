@@ -142,8 +142,10 @@ const secret =  JWT_SECRET;
 
 
     const token = jwt.sign(payload, secret, {expiresIn: "15m"});
-    const link = "http://localhost:3000/reset-password/"+newID+"/"+token;
-
+    const link = "http://www.pogiee.com/reset-password/"+newID+"/"+token;
+    const text = "You are receiving this because you (or someone else) have requsted the reset of the password of your pogiee account."+
+                 "Please click on the following link, or paste this into your browser to complete the process. If you did not request a password "+
+                 "reset then contact Pogiee suppoprt."+"\n\n"+link
 
 
     const data = {
@@ -158,7 +160,7 @@ const secret =  JWT_SECRET;
        from: "pogiee.ny@gmail.com",
        to: email,
        subject: subject,
-       text: link
+       text: text
      }
 
      transporter2.sendMail(mailOptions, function(err, data){
