@@ -137,6 +137,16 @@ font-size: 15px;
     color: #fed049;
 }
 
+.logo-banner {
+ background: url("https://res.cloudinary.com/adela-digi/image/upload/v1624659422/LogoMakr-0mnGpM_ipzks0.png");
+ background-repeat: no-repeat;
+ background-size: contain;
+ background-position: center;
+ height: 200px;
+ position: relative;
+ top: 150px;
+}
+
 @media (min-width: 770px) {
 
   .main {
@@ -173,6 +183,16 @@ font-size: 15px;
 
   .main {
     padding-bottom: 450px;
+  }
+
+  .logo-banner {
+   background: url("https://res.cloudinary.com/adela-digi/image/upload/v1624659422/LogoMakr-0mnGpM_ipzks0.png");
+   background-repeat: no-repeat;
+   background-size: contain;
+   background-position: center;
+   height: 250px;
+   position: relative;
+   top: 150px;
   }
 
 }
