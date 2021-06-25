@@ -89,7 +89,8 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 
 app.get("/forgot-password", (req, res, next )=>{
-  res.render("forgot-password");
+  //res.render("forgot-password");
+  res.render("forgot-password", {success: req.query.success, error: req.query.error});
 });
 
 app.post("/forgot-password", (req, res, next)=>{
@@ -115,9 +116,14 @@ app.post("/forgot-password", (req, res, next)=>{
   User.findOne({ username: req.body.email }, function (err, foundUser) {
     if(err){
       console.log(err);
+      res.redirect("/forgot-password?error=true");
     }else{
-      
-     sendingBoy(foundUser._id)
+      if(!foundUser){
+        res.redirect("/forgot-password?error=true");
+      }else{
+        sendingBoy(foundUser._id)
+      }
+
     }
   });
 
@@ -165,7 +171,8 @@ const secret =  JWT_SECRET;
 
    sendMail(email, subject, link);
 
-  res.send("Password reset link has been sent  to your email.");
+  //res.send("Password reset link has been sent  to your email.");
+  res.redirect("/forgot-password?success=true")
 }
 
 
