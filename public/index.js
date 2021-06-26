@@ -623,7 +623,7 @@ function noErrors()
   else if(startGame === true && hardMode === true && points < 100 && wrongWords != 3)
   {
     setTimeout(displayWord(hardList), 3000);
-    setTimeout(hideWord, 1000);
+    setTimeout(hideWord, 3000);
   }
    else if (points === 100) {
     h1Saying.innerText = "YOU WIN!";
