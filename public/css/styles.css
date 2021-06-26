@@ -188,6 +188,32 @@ color: #f05945;
 }
 
 
+.mode-moblie-box {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  text-align: center;
+  width: 170px;
+  padding: 10px;
+}
+
+.mode-mobile-box h5{
+  font-size: 15px;
+}
+
+#mode-mobile-btn {
+  color: #fff;
+  cursor:pointer;
+}
+
+#mode-moblie-btn:hover {
+  color: #289672;
+}
+
+#hide-status {
+  color: #fff;
+}
+
 /* end of mobile */
 
 @media (min-width: 720px){

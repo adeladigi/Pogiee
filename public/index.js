@@ -36,10 +36,17 @@ var pointsDisplay = document.getElementById("points-display");
 var missedWords = document.getElementById("missed-words-display");
 var capturedWords = document.getElementById("words-Captured-display");
 
-// hidemode variables
+// hide mode desktop variables
 var hideModeBtn = document.getElementById("mode-desktop-btn");
-//var hideStatus = document.getElementById("hide-status");
+
 var $hideStatus = $("#hide-status");
+
+//hide mode mobile variables
+var hideModeMobileBtn = document.getElementById("mode-mobile-btn");
+//var hideStatus = document.getElementById("hide-status");
+var $hideMobileStatus = $("#hide-mobile-status");
+
+
 
 
 var points =  0;
@@ -90,6 +97,12 @@ checkLevelStatusMobile();
 
 // check tablet/ desktop
 checkLevelStatusDesktop();
+
+// check mode status Desktop
+checkModeStatusDesktop();
+
+// check mode status Mobile
+checkModeStatusMobile();
 
 
 
@@ -142,8 +155,10 @@ var randomWord;
 
 hiddenButtons = document.getElementsByClassName("hide1");
 
+
+// Desktop
 hideModeBtn.addEventListener("click", function() {
-  console.log("working");
+
 if(hideMode === false){
    hideMode = true;
    $hideStatus.text("ON")
@@ -153,6 +168,34 @@ if(hideMode === false){
    $hideStatus.text("OFF")
    $hideStatus.css("color", "#fff")
 }
+
+// check mode status Desktop
+checkModeStatusDesktop();
+
+// check mode status Mobile
+checkModeStatusMobile();
+
+
+});
+
+// Mobile
+ hideModeMobileBtn.addEventListener("click", function() {
+
+if(hideMode === false){
+   hideMode = true;
+   $hideMobileStatus.text("ON")
+   $hideMobileStatus.css("color", "#29bb89")
+}else if(hideMode === true){
+   hideMode = false;
+   $hideMobileStatus.text("OFF")
+   $hideMobileStatus.css("color", "#fff")
+}
+
+// check mode status Desktop
+checkModeStatusDesktop();
+
+// check mode status Mobile
+checkModeStatusMobile();
 
 
 });
@@ -515,6 +558,29 @@ function checkLevelStatusDesktop(){
   }
 
 
+}
+
+function checkModeStatusDesktop(){
+
+  if(hideMode === true){
+     $hideStatus.text("ON")
+     $hideStatus.css("color", "#29bb89")
+  }else if(hideMode === false){
+     $hideStatus.text("OFF")
+     $hideStatus.css("color", "#fff")
+  }
+
+
+}
+
+function checkModeStatusMobile(){
+  if(hideMode === true){
+     $hideMobileStatus.text("ON")
+     $hideMobileStatus.css("color", "#29bb89")
+  }else if(hideMode === false){
+     $hideMobileStatus.text("OFF")
+     $hideMobileStatus.css("color", "#fff")
+  }
 }
 
 
