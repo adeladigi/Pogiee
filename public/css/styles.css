@@ -360,6 +360,11 @@ color: #f05945;
 
   #mode-desktop-btn {
     color: #fff;
+    cursor:pointer;
+  }
+
+  #mode-desktop-btn:hover {
+    color: #289672;
   }
 
   #hide-status {
