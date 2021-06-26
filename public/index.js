@@ -35,12 +35,23 @@ var playAgain = document.getElementById("playAgain-btn");
 var pointsDisplay = document.getElementById("points-display");
 var missedWords = document.getElementById("missed-words-display");
 var capturedWords = document.getElementById("words-Captured-display");
+
+// hidemode variables
+var hideModeBtn = document.getElementById("mode-desktop-btn");
+//var hideStatus = document.getElementById("hide-status");
+var $hideStatus = $("#hide-status");
+
+
 var points =  0;
 var wrongWords = 0;
 
+// difficulty modes
 var easyMode = false;
 var normalMode = true;
 var hardMode = false;
+
+// game mode
+var hideMode = false;
 
 var wrongAnswerFlag = false;
 
@@ -130,6 +141,23 @@ var randomWord;
 
 
 hiddenButtons = document.getElementsByClassName("hide1");
+
+hideModeBtn.addEventListener("click", function() {
+  console.log("working");
+if(hideMode === false){
+   hideMode = true;
+   $hideStatus.text("ON")
+   $hideStatus.css("color", "#29bb89")
+}else if(hideMode === true){
+   hideMode = false;
+   $hideStatus.text("OFF")
+   $hideStatus.css("color", "#fff")
+}
+
+
+});
+
+
 
 startButton.addEventListener("click", function() {
 
@@ -271,7 +299,7 @@ function displayWord(wordList) {
     document.getElementById("answerButton").style.cssText = "visibility: hidden;";
     document.getElementById("inputBox").style.cssText = "visibility: hidden;";
     document.getElementById("playAgain-btn").style.cssText = "visibility: visible;";
-  } else if (wordList.length > 1) {
+  } else if (wordList.length > 1 && hideMode === false) {
 
     var arrayNumber = Math.floor(Math.random() * wordList.length);
     var maxWords = wordList.length;
@@ -284,11 +312,26 @@ function displayWord(wordList) {
 
     wordList.splice(arrayNumber, 1);
     //console.log("new word:"+ randomWord);
+  }else if (wordList.length > 1 && hideMode === true) {
+
+    var arrayNumber = Math.floor(Math.random() * wordList.length);
+    var maxWords = wordList.length;
+    //h1Saying.innerText = wordList[arrayNumber];
+
+    randomWord = wordList[arrayNumber];
+
+     //current function being used for api calls
+    apiGetWord(randomWord);
+
+    wordList.splice(arrayNumber, 1);
+
   } else if (wordList.length === 1) {
     wordList.pop();
   }
 
 }
+
+
 
 
 function hideWord() {

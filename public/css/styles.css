@@ -348,10 +348,47 @@ color: #f05945;
     cursor:pointer;
   }
 
+  .mode-box {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mode-box h5{
+    font-size: 20px;
+  }
+
+  #mode-desktop-btn {
+    color: #fff;
+  }
+
+  #hide-status {
+    color: #fff;
+  }
+
 }
 /* end of tablet layout*/
 
 @media (min-width: 1320px) {
+
+ .mode-box {
+   padding: 15px;
+   display: flex;
+   justify-content: space-between;
+ }
+
+ .mode-box h5{
+   font-size: 20px;
+ }
+
+ #mode-desktop-btn {
+   color: #fff;
+ }
+
+ #hide-status {
+   color: #fff;
+ }
+
 
   .second-menu {
 
