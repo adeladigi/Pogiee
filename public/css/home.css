@@ -47,10 +47,14 @@ margin: 10px;
   background-color: #d8e3e7;
 }
 
+.drop-down-menu {
+  background-color: #fed049;
+  padding: 10px;
+}
+
 .drop-down-menu h3{
-background-color: #eeeeee;
 font-family: 'Days One', sans-serif;
-font-size: 15px;
+font-size: 20px;
 }
 
 .main {
