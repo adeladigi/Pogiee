@@ -285,7 +285,7 @@ function hideWord() {
 
   // if user clicks sound icon
   soundButton.addEventListener("click", function(){
-   ajaxISS(randomWord, key2)
+   apiGetWord(randomWord)
   });
 
   $hamMenu.click(function(){
@@ -571,5 +571,5 @@ function apiGetWord(word){
             let audio = new Audio(data.voice);
             audio.play();
            });
-          
+
 }
