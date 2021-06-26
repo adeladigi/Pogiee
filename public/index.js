@@ -81,6 +81,7 @@ checkLevelStatusMobile();
 checkLevelStatusDesktop();
 
 
+
 var normalList = ["consent", "elicit", "authentic", "collusion", "acceptance", "apprehensive", "autonomy", "dogged", "evade",
 "adversary", "attentive", "banish", "barricade", "addictive", "commotion", "conspicuous", "counter", "cunning", "debris",
 "defiance", "destination", "diminish", "emerge", "ember", "foresight", "fragrance", "grueling", "habitation", "ignite", "jargon", "luminous",
@@ -88,7 +89,8 @@ var normalList = ["consent", "elicit", "authentic", "collusion", "acceptance", "
  "envious", "extinction", "gasoline", "fraction", "government", "hazardous", "interview", "library", "material", "mathematics", "encouraging",
 "economic", "proscribe", "remiss", "calamity", "dumbbell","cemetery", "weird", "harass", "eureka", "hobnob", "nemesis", "aloft", "debunk",
  "mature", "conjecture", "scrimp", "ungainly", "endorse", "entail", "eradicate", "truncate", "tumult", "abet", "corollary", "excavate",
- "exonerate", "shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary"];
+ "exonerate", "shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary", "acerbic", "yeoman",
+ "demure", "insipid", "glib", "cogent", "paragon", "affable", "levity"];
 
 
  var easyList = ["call", "air", "also", "both", "family", "after", "any", "dish", "clock", "around", "barn", "back", "cold", "animal", "always",
@@ -104,10 +106,13 @@ var normalList = ["consent", "elicit", "authentic", "collusion", "acceptance", "
 
 
   var hardList = ["surveillance", "chauffeur", "misspell", "intelligence", "pronunciation", "handkerchief", "questionnaire", "unconscious", "precocious", "idiosyncrasy",
-  "conscientious", "necessary", "bouillon", "encumber", "holistic", "incongruous", "aberration", "abjure", "abrogate", "abstruse", "admonish", "ambivalent", "amenable",
-  "apathetic", "antithesis", "assiduous", "beguile", "capitulate", "demagogue", "denigrate", "diaphanous", "didactic", "disrepute", "ebullient", "egregious", "emollient",
-  "fatuous", "impetuous", "Sacrilegious", "fallacious", "forbearance", "crescendo", "irresistible", "millennium", "inoculate", "supersede", "minuscule", "embarrass",
-  "occurrence", "amorphous", "facetious", "equivocal", "redolent", "stratagem", "aplomb"]
+   "conscientious", "necessary", "bouillon", "encumber", "holistic", "incongruous", "aberration", "abjure", "abrogate", "abstruse", "admonish", "ambivalent", "amenable",
+   "apathetic", "antithesis", "assiduous", "beguile", "capitulate", "demagogue", "denigrate", "diaphanous", "didactic", "disrepute", "ebullient", "egregious", "emollient",
+   "fatuous", "impetuous", "Sacrilegious", "fallacious", "forbearance", "crescendo", "irresistible", "millennium", "inoculate", "supersede", "minuscule", "embarrass",
+   "occurrence", "amorphous", "facetious", "equivocal", "redolent", "stratagem", "aplomb", "evangelical", "palatable", "salubrious", "ameliorate", "ineffable", "desultory",
+   "meretricious", "malinger", "diffident", "reticent", "irascible", "mendacious","elucidate", "prevaricate", "specious", "esoteric", "lugubrious", "prattle", "neophyte", "despondent",
+    "blithe", "taciturn", "pertinacious", "compunction", "pulchritude", "stentorian", "forlorn", "loquacious","perfidious", "intransigent", "innocuous", "invective", "circumlocution",
+    "ruminate", "calumny", "ignominious", "serendipity", "pusillanimous", "raconteur", "impertinent"];
 
 
 
@@ -145,6 +150,7 @@ playAgain.addEventListener("click", function() {
     document.getElementById("inputBox").style.cssText = "visibility: visible;";
     document.getElementById("sound-icon").style.cssText = "visibility: visible;";
 
+
     var normalList = ["consent", "elicit", "authentic", "collusion", "acceptance", "apprehensive", "autonomy", "dogged", "evade",
     "adversary", "attentive", "banish", "barricade", "addictive", "commotion", "conspicuous", "counter", "cunning", "debris",
     "defiance", "destination", "diminish", "emerge", "ember", "foresight", "fragrance", "grueling", "habitation", "ignite", "jargon", "luminous",
@@ -152,7 +158,8 @@ playAgain.addEventListener("click", function() {
      "envious", "extinction", "gasoline", "fraction", "government", "hazardous", "interview", "library", "material", "mathematics", "encouraging",
     "economic", "proscribe", "remiss", "calamity", "dumbbell","cemetery", "weird", "harass", "eureka", "hobnob", "nemesis", "aloft", "debunk",
      "mature", "conjecture", "scrimp", "ungainly", "endorse", "entail", "eradicate", "truncate", "tumult", "abet", "corollary", "excavate",
-     "exonerate", "shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary"];
+     "exonerate", "shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary", "acerbic", "yeoman",
+     "demure", "insipid", "glib", "cogent", "paragon", "affable", "levity"];
 
 
 
@@ -169,10 +176,13 @@ playAgain.addEventListener("click", function() {
 
 
       var hardList = ["surveillance", "chauffeur", "misspell", "intelligence", "pronunciation", "handkerchief", "questionnaire", "unconscious", "precocious", "idiosyncrasy",
-     "conscientious", "necessary", "bouillon", "encumber", "holistic", "incongruous", "aberration", "abjure", "abrogate", "abstruse", "admonish", "ambivalent", "amenable",
-     "apathetic", "antithesis", "assiduous", "beguile", "capitulate", "demagogue", "denigrate", "diaphanous", "didactic", "disrepute", "ebullient", "egregious", "emollient",
-     "fatuous", "impetuous", "Sacrilegious", "fallacious", "forbearance", "crescendo", "irresistible", "millennium", "inoculate", "supersede", "minuscule", "embarrass",
-     "occurrence", "amorphous", "facetious", "equivocal", "redolent", "stratagem", "aplomb"]
+       "conscientious", "necessary", "bouillon", "encumber", "holistic", "incongruous", "aberration", "abjure", "abrogate", "abstruse", "admonish", "ambivalent", "amenable",
+       "apathetic", "antithesis", "assiduous", "beguile", "capitulate", "demagogue", "denigrate", "diaphanous", "didactic", "disrepute", "ebullient", "egregious", "emollient",
+       "fatuous", "impetuous", "Sacrilegious", "fallacious", "forbearance", "crescendo", "irresistible", "millennium", "inoculate", "supersede", "minuscule", "embarrass",
+       "occurrence", "amorphous", "facetious", "equivocal", "redolent", "stratagem", "aplomb", "evangelical", "palatable", "salubrious", "ameliorate", "ineffable", "desultory",
+       "meretricious", "malinger", "diffident", "reticent", "irascible", "mendacious","elucidate", "prevaricate", "specious", "esoteric", "lugubrious", "prattle", "neophyte", "despondent",
+        "blithe", "taciturn", "pertinacious", "compunction", "pulchritude", "stentorian", "forlorn", "loquacious","perfidious", "intransigent", "innocuous", "invective", "circumlocution",
+        "ruminate", "calumny", "ignominious", "serendipity", "pusillanimous", "raconteur", "impertinent"];
 
 
 
