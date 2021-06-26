@@ -85,34 +85,36 @@ checkLevelStatusDesktop();
 var normalList = ["consent", "elicit", "authentic", "collusion", "acceptance", "apprehensive", "autonomy", "dogged", "evade",
 "adversary", "attentive", "banish", "barricade", "addictive", "commotion", "conspicuous", "counter", "cunning", "debris",
 "defiance", "destination", "diminish", "emerge", "ember", "foresight", "fragrance", "grueling", "habitation", "ignite", "jargon", "luminous",
- "momentum", "multitude", "lullaby", "reckoning", "zealous", "resin", "mayonnaise", "shrunken", "season", "brainstorm", "culture", "drastic",
- "envious", "extinction", "gasoline", "fraction", "government", "hazardous", "interview", "library", "material", "mathematics", "encouraging",
+"momentum", "multitude", "lullaby", "reckoning", "zealous", "resin", "mayonnaise", "shrunken", "season", "brainstorm", "culture", "drastic",
+"envious", "extinction", "gasoline", "fraction", "government", "hazardous", "interview", "library", "material", "mathematics", "encouraging",
 "economic", "proscribe", "remiss", "calamity", "dumbbell","cemetery", "weird", "harass", "eureka", "hobnob", "nemesis", "aloft", "debunk",
- "mature", "conjecture", "scrimp", "ungainly", "endorse", "entail", "eradicate", "truncate", "tumult", "abet", "corollary", "excavate",
- "exonerate", "shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary", "acerbic", "yeoman",
- "demure", "insipid", "glib", "cogent", "paragon", "affable", "levity"];
+"mature", "conjecture", "scrimp", "ungainly", "endorse", "entail", "eradicate", "truncate", "tumult", "abet", "corollary", "excavate", "exonerate",
+"shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary", "acerbic", "yeoman", "demure", "insipid", "glib", "cogent", "paragon", "affable",
+"levity", "placid", "vapid", "nadir", "tenuous", "abase", "surly", "stolid", "canard", "fervid", "apathy", "zealot", "lucid", "intrepid", "clemency", "deft", "obviate"];
 
 
- var easyList = ["call", "air", "also", "both", "family", "after", "any", "dish", "clock", "around", "barn", "back", "cold", "animal", "always",
- "bath", "ask", "boat", "been", "each", "buy", "clean", "fast", "dress", "feed", "best", "cannot", "before", "because", "deer", "drop", "every",
- "friend", "found", "first", "fight", "gave", "give", "goat", "good", "happy", "help","here", "high", "him", "home", "house", "jump", "just", "kind",
- "drum", "kiss", "large", "light", "line", "lion", "list", "little", "lock", "long", "look", "loud", "lunch", "made", "mess", "might", "most", "much",
- "must", "new", "night", "nine", "now", "off", "only", "or", "our", "out", "out", "path", "place", "plus", "pool", "put", "rabbit", "read", "rest",
- "right", "rock", "said", "sea", "second", "seem", "send", "seven", "shape", "sight", "silly", "sing", "sister", "slid", "sound", "stamp", "state",
- "still","stone", "such", "take", "tell", "thing", "ton", "treat", "trick", "tune", "under", "use", "wash", "well", "went", "yard", "year",
-  "done", "lab", "the", "down", "are", "car", "she", "why", "at", "all", "what", "was", "with", "which", "each", "these", "would", "from",
-  "water", "many", "other", "look", "number", "part", "write", "have", "turn", "came", "over", "know", "live", "try", "great", "study", "move", "world"]
+var easyList = ["call", "air", "also", "both", "family", "after", "any", "dish", "clock", "around", "barn", "back", "cold", "animal", "always",
+"bath", "ask", "boat", "been", "each", "buy", "clean", "fast", "dress", "feed", "best", "cannot", "before", "because", "deer", "drop", "every",
+"friend", "found", "first", "fight", "gave", "give", "goat", "good", "happy", "help","here", "high", "him", "home", "house", "jump", "just", "kind",
+"drum", "kiss", "large", "light", "line", "lion", "list", "little", "lock", "long", "look", "loud", "lunch", "made", "mess", "might", "most", "much",
+"must", "new", "night", "nine", "now", "off", "only", "or", "our", "out", "out", "path", "place", "plus", "pool", "put", "rabbit", "read", "rest",
+"right", "rock", "said", "sea", "second", "seem", "send", "seven", "shape", "sight", "silly", "sing", "sister", "slid", "sound", "stamp", "state",
+"still","stone", "such", "take", "tell", "thing", "ton", "treat", "trick", "tune", "under", "use", " very", "wash", "well", "went", "yard", "year",
+ "done", "lab", "the", "down", "are", "car", "she", "why", "at", "all", "what", "was", "with", "which", "each", "these", "would", "from",
+"water", "many", "other", "look", "number", "part", "write", "have", "turn", "came", "over", "know", "live", "try", "great", "study", "move", "world", "boon"];
 
 
 
   var hardList = ["surveillance", "chauffeur", "misspell", "intelligence", "pronunciation", "handkerchief", "questionnaire", "unconscious", "precocious", "idiosyncrasy",
-   "conscientious", "necessary", "bouillon", "encumber", "holistic", "incongruous", "aberration", "abjure", "abrogate", "abstruse", "admonish", "ambivalent", "amenable",
-   "apathetic", "antithesis", "assiduous", "beguile", "capitulate", "demagogue", "denigrate", "diaphanous", "didactic", "disrepute", "ebullient", "egregious", "emollient",
-   "fatuous", "impetuous", "Sacrilegious", "fallacious", "forbearance", "crescendo", "irresistible", "millennium", "inoculate", "supersede", "minuscule", "embarrass",
-   "occurrence", "amorphous", "facetious", "equivocal", "redolent", "stratagem", "aplomb", "evangelical", "palatable", "salubrious", "ameliorate", "ineffable", "desultory",
-   "meretricious", "malinger", "diffident", "reticent", "irascible", "mendacious","elucidate", "prevaricate", "specious", "esoteric", "lugubrious", "prattle", "neophyte", "despondent",
-    "blithe", "taciturn", "pertinacious", "compunction", "pulchritude", "stentorian", "forlorn", "loquacious","perfidious", "intransigent", "innocuous", "invective", "circumlocution",
-    "ruminate", "calumny", "ignominious", "serendipity", "pusillanimous", "raconteur", "impertinent"];
+"conscientious", "necessary", "bouillon", "encumber", "holistic", "incongruous", "aberration", "abjure", "abrogate", "abstruse", "admonish", "ambivalent", "amenable","apathetic",
+"antithesis", "assiduous", "beguile", "capitulate", "demagogue", "denigrate", "diaphanous", "didactic", "disrepute", "ebullient", "egregious", "emollient","fatuous", "impetuous",
+"Sacrilegious", "fallacious", "forbearance", "crescendo", "irresistible", "millennium", "inoculate", "supersede", "minuscule", "embarrass", "occurrence", "amorphous", "facetious",
+"equivocal", "redolent", "stratagem", "aplomb", "evangelical", "palatable", "salubrious", "ameliorate", "ineffable", "desultory", "meretricious", "malinger", "diffident", "reticent",
+ "irascible", "mendacious","elucidate", "prevaricate", "specious", "esoteric", "lugubrious", "prattle", "neophyte", "despondent",  "blithe", "taciturn", "pertinacious", "compunction",
+ "pulchritude", "stentorian", "forlorn", "loquacious","perfidious", "intransigent", "innocuous", "invective", "circumlocution", "ruminate", "calumny", "ignominious", "serendipity", "pusillanimous",
+  "raconteur", "impertinent", "repudiate", "lachrymose",  "arcane", "anachronism", "abnegation", "clairvoyant", "somnolent", "astute", "nettle", "soporific", "inculcate", "sycophant", "invidious",
+  "quotidian", "sagacious", "ennui", "ethereal", "sanguine", "peripatetic", "impecunious", "obsequious", "temerity", "indolent", "prosaic", "saccharine", "inexorable", "obstreperous", "sentient",
+   "phlegmatic", "prurient", "vociferous", "truculent", "ephemeral", "imperious", "amorous", "officious", "presumptuous", "felicitous", "equanimity", "peccadillo"];
 
 
 
@@ -152,37 +154,39 @@ playAgain.addEventListener("click", function() {
 
 
     var normalList = ["consent", "elicit", "authentic", "collusion", "acceptance", "apprehensive", "autonomy", "dogged", "evade",
-    "adversary", "attentive", "banish", "barricade", "addictive", "commotion", "conspicuous", "counter", "cunning", "debris",
-    "defiance", "destination", "diminish", "emerge", "ember", "foresight", "fragrance", "grueling", "habitation", "ignite", "jargon", "luminous",
-     "momentum", "multitude", "lullaby", "reckoning", "zealous", "resin", "mayonnaise", "shrunken", "season", "brainstorm", "culture", "drastic",
-     "envious", "extinction", "gasoline", "fraction", "government", "hazardous", "interview", "library", "material", "mathematics", "encouraging",
-    "economic", "proscribe", "remiss", "calamity", "dumbbell","cemetery", "weird", "harass", "eureka", "hobnob", "nemesis", "aloft", "debunk",
-     "mature", "conjecture", "scrimp", "ungainly", "endorse", "entail", "eradicate", "truncate", "tumult", "abet", "corollary", "excavate",
-     "exonerate", "shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary", "acerbic", "yeoman",
-     "demure", "insipid", "glib", "cogent", "paragon", "affable", "levity"];
+"adversary", "attentive", "banish", "barricade", "addictive", "commotion", "conspicuous", "counter", "cunning", "debris",
+"defiance", "destination", "diminish", "emerge", "ember", "foresight", "fragrance", "grueling", "habitation", "ignite", "jargon", "luminous",
+ "momentum", "multitude", "lullaby", "reckoning", "zealous", "resin", "mayonnaise", "shrunken", "season", "brainstorm", "culture", "drastic",
+ "envious", "extinction", "gasoline", "fraction", "government", "hazardous", "interview", "library", "material", "mathematics", "encouraging",
+"economic", "proscribe", "remiss", "calamity", "dumbbell","cemetery", "weird", "harass", "eureka", "hobnob", "nemesis", "aloft", "debunk",
+ "mature", "conjecture", "scrimp", "ungainly", "endorse", "entail", "eradicate", "truncate", "tumult", "abet", "corollary", "excavate", "exonerate",
+  "shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary", "acerbic", "yeoman", "demure", "insipid", "glib", "cogent", "paragon", "affable",
+ "levity", "placid", "vapid", "nadir", "tenuous", "abase", "surly", "stolid", "canard", "fervid", "apathy", "zealot", "lucid", "intrepid", "clemency", "deft", "obviate"];
 
 
 
-     var easyList = ["call", "air", "also", "both", "family", "after", "any", "dish", "clock", "around", "barn", "back", "cold", "animal", "always",
-     "bath", "ask", "boat", "been", "each", "buy", "clean", "fast", "dress", "feed", "best", "cannot", "before", "because", "deer", "drop", "every",
-     "friend", "found", "first", "fight", "gave", "give", "goat", "good", "happy", "help","here", "high", "him", "home", "house", "jump", "just", "kind",
-     "drum", "kiss", "large", "light", "line", "lion", "list", "little", "lock", "long", "look", "loud", "lunch", "made", "mess", "might", "most", "much",
-     "must", "new", "night", "nine", "now", "off", "only", "or", "our", "out", "out", "path", "place", "plus", "pool", "put", "rabbit", "read", "rest",
-     "right", "rock", "said", "sea", "second", "seem", "send", "seven", "shape", "sight", "silly", "sing", "sister", "slid", "sound", "stamp", "state",
-     "still","stone", "such", "take", "tell", "thing", "ton", "treat", "trick", "tune", "under", "use", "wash", "well", "went", "yard", "year",
-      "done", "lab", "the", "down", "are", "car", "she", "why", "at", "all", "what", "was", "with", "which", "each", "these", "would", "from",
-      "water", "many", "other", "look", "number", "part", "write", "have", "turn", "came", "over", "know", "live", "try", "great", "study", "move", "world"]
+ var easyList = ["call", "air", "also", "both", "family", "after", "any", "dish", "clock", "around", "barn", "back", "cold", "animal", "always",
+ "bath", "ask", "boat", "been", "each", "buy", "clean", "fast", "dress", "feed", "best", "cannot", "before", "because", "deer", "drop", "every",
+ "friend", "found", "first", "fight", "gave", "give", "goat", "good", "happy", "help","here", "high", "him", "home", "house", "jump", "just", "kind",
+ "drum", "kiss", "large", "light", "line", "lion", "list", "little", "lock", "long", "look", "loud", "lunch", "made", "mess", "might", "most", "much",
+ "must", "new", "night", "nine", "now", "off", "only", "or", "our", "out", "out", "path", "place", "plus", "pool", "put", "rabbit", "read", "rest",
+ "right", "rock", "said", "sea", "second", "seem", "send", "seven", "shape", "sight", "silly", "sing", "sister", "slid", "sound", "stamp", "state",
+ "still","stone", "such", "take", "tell", "thing", "ton", "treat", "trick", "tune", "under", "use", " very", "wash", "well", "went", "yard", "year",
+  "done", "lab", "the", "down", "are", "car", "she", "why", "at", "all", "what", "was", "with", "which", "each", "these", "would", "from",
+ "water", "many", "other", "look", "number", "part", "write", "have", "turn", "came", "over", "know", "live", "try", "great", "study", "move", "world", "boon"];
 
 
 
       var hardList = ["surveillance", "chauffeur", "misspell", "intelligence", "pronunciation", "handkerchief", "questionnaire", "unconscious", "precocious", "idiosyncrasy",
-       "conscientious", "necessary", "bouillon", "encumber", "holistic", "incongruous", "aberration", "abjure", "abrogate", "abstruse", "admonish", "ambivalent", "amenable",
-       "apathetic", "antithesis", "assiduous", "beguile", "capitulate", "demagogue", "denigrate", "diaphanous", "didactic", "disrepute", "ebullient", "egregious", "emollient",
-       "fatuous", "impetuous", "Sacrilegious", "fallacious", "forbearance", "crescendo", "irresistible", "millennium", "inoculate", "supersede", "minuscule", "embarrass",
-       "occurrence", "amorphous", "facetious", "equivocal", "redolent", "stratagem", "aplomb", "evangelical", "palatable", "salubrious", "ameliorate", "ineffable", "desultory",
-       "meretricious", "malinger", "diffident", "reticent", "irascible", "mendacious","elucidate", "prevaricate", "specious", "esoteric", "lugubrious", "prattle", "neophyte", "despondent",
-        "blithe", "taciturn", "pertinacious", "compunction", "pulchritude", "stentorian", "forlorn", "loquacious","perfidious", "intransigent", "innocuous", "invective", "circumlocution",
-        "ruminate", "calumny", "ignominious", "serendipity", "pusillanimous", "raconteur", "impertinent"];
+ "conscientious", "necessary", "bouillon", "encumber", "holistic", "incongruous", "aberration", "abjure", "abrogate", "abstruse", "admonish", "ambivalent", "amenable","apathetic",
+  "antithesis", "assiduous", "beguile", "capitulate", "demagogue", "denigrate", "diaphanous", "didactic", "disrepute", "ebullient", "egregious", "emollient","fatuous", "impetuous",
+   "Sacrilegious", "fallacious", "forbearance", "crescendo", "irresistible", "millennium", "inoculate", "supersede", "minuscule", "embarrass", "occurrence", "amorphous", "facetious",
+    "equivocal", "redolent", "stratagem", "aplomb", "evangelical", "palatable", "salubrious", "ameliorate", "ineffable", "desultory", "meretricious", "malinger", "diffident", "reticent",
+     "irascible", "mendacious","elucidate", "prevaricate", "specious", "esoteric", "lugubrious", "prattle", "neophyte", "despondent",  "blithe", "taciturn", "pertinacious", "compunction",
+     "pulchritude", "stentorian", "forlorn", "loquacious","perfidious", "intransigent", "innocuous", "invective", "circumlocution", "ruminate", "calumny", "ignominious", "serendipity", "pusillanimous",
+      "raconteur", "impertinent", "repudiate", "lachrymose",  "arcane", "anachronism", "abnegation", "clairvoyant", "somnolent", "astute", "nettle", "soporific", "inculcate", "sycophant", "invidious",
+      "quotidian", "sagacious", "ennui", "ethereal", "sanguine", "peripatetic", "impecunious", "obsequious", "temerity", "indolent", "prosaic", "saccharine", "inexorable", "obstreperous", "sentient",
+       "phlegmatic", "prurient", "vociferous", "truculent", "ephemeral", "imperious", "amorous", "officious", "presumptuous", "felicitous", "equanimity", "peccadillo"];
 
 
 
