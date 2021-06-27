@@ -383,6 +383,7 @@ function displayWord(wordList) {
 
     var arrayNumber = Math.floor(Math.random() * wordList.length);
     var maxWords = wordList.length;
+    wordDefinition.innerHTML = "";
     h1Saying.innerText = wordList[arrayNumber];
 
     //console.log("number:"+arrayNumber);
@@ -390,7 +391,7 @@ function displayWord(wordList) {
 
      //current function being used for api calls
     apiGetWord(randomWord);
-    apiGetDefinition(randomWord);
+    //apiGetDefinition(randomWord);
 
     wordList.splice(arrayNumber, 1);
     //console.log("new word:"+ randomWord);
@@ -404,7 +405,7 @@ function displayWord(wordList) {
 
      //current function being used for api calls
     apiGetWord(randomWord);
-    apiGetDefinition(randomWord);
+    //apiGetDefinition(randomWord);
 
     wordList.splice(arrayNumber, 1);
 
@@ -677,6 +678,7 @@ function noErrors()
   }
    else if (points === 100) {
     h1Saying.innerText = "YOU WIN!";
+    wordDefinition.innerHTML = "";
     document.getElementById("answerButton").style.cssText = "visibility: hidden;";
     document.getElementById("inputBox").style.cssText = "visibility: hidden;";
     document.getElementById("sound-icon").style.cssText = "visibility: hidden;";
@@ -763,7 +765,7 @@ function apiGetDefinition(word){
           'Content-Type': 'application/json'
         }}).then(response => response.json())
            .then(function(data){
-
+           wordDefinition.innerHTML = "";
            wordDefinition.innerHTML = data.text;
 
            });
