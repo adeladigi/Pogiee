@@ -58,11 +58,7 @@ var easyValue = document.getElementById("easy-setting-value").value;
 var normalValue = document.getElementById("normal-setting-value").value;
 var hardValue = document.getElementById("hard-setting-value").value;
 
-console.log("easy: "+easyValue)
-console.log("normal: "+normalValue)
-console.log("hard: "+hardValue)
-
-
+// setting level difficulty
 if(easyValue === "true" && normalValue === "false" && hardValue === "false"){
 
   // difficulty modes
@@ -765,8 +761,6 @@ function SetHidemode(action){
            .then(function(data){
               let mode = data.modeSetting;
 
-              console.log("database is mode: "+mode);
-
            });
 
 }
@@ -787,10 +781,6 @@ function SetDifficulty(action){
         }}).then(response => response.json())
            .then(function(data){
               let mode = data.modeSetting;
-
-              console.log("easy mode is: "+mode);
-              console.log("normal mode is: "+mode);
-              console.log("hard mode is: "+mode);
 
            });
 
