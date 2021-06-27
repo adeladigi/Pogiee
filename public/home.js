@@ -8,6 +8,13 @@ const dropDownAboutBtn = document.getElementById("about-btn");
 const logo1 = document.getElementById("logo1-btn");
 const logo2 = document.getElementById("logo2-btn");
 
+//games-btn
+const gamesBtn = document.getElementById("games-btn");
+
+gamesBtn.addEventListener("click",function(){
+  alert("This page is coming soon!");
+});
+
 
 
 const supportButton = document.getElementById("support-btn")
