@@ -668,11 +668,15 @@ function noErrors()
     setTimeout(hideWord, 3000);
   }
   else if(startGame === true && easyMode === true && points < 100 && wrongWords != 3) {
+    h1Saying.innerText = "Next word is";
+    wordDefinition.innerText = "";
     setTimeout(displayWord(easyList), 3000);
     setTimeout(hideWord, 3000);
   }
   else if(startGame === true && hardMode === true && points < 100 && wrongWords != 3)
   {
+    h1Saying.innerText = "Next word is";
+    wordDefinition.innerText = "";
     setTimeout(displayWord(hardList), 3000);
     setTimeout(hideWord, 3000);
   }
@@ -693,6 +697,7 @@ function noErrors()
     h1Saying.innerText = "YOU LOSE!";
     document.getElementById("answerButton").style.cssText = "visibility: hidden;";
     document.getElementById("inputBox").style.cssText = "visibility: hidden;";
+    document.getElementById("sound-icon").style.cssText = "visibility: hidden;";
     document.getElementById("playAgain-btn").style.cssText = "visibility: visible;";
     startGame = false;
   }
@@ -766,7 +771,9 @@ function apiGetDefinition(word){
         }}).then(response => response.json())
            .then(function(data){
            wordDefinition.innerHTML = "";
-           wordDefinition.innerHTML = data.text;
+           const string = data.text;
+           wordDefinition.innerHTML = string.replace(word, "_____");
+
 
            });
 
