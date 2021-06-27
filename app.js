@@ -40,14 +40,14 @@ mongoose.connect("mongodb+srv://admin-juniorsnow14:alto1017@pogieecluster.knjcu.
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
-   email: {
+   username: {
    type: String,
-   unique: false
+   unique: true
  },
  password: String,
  nickname: {
    type: String,
-   unique: false
+   unique: true
  },
  points: Number,
  level: String,
@@ -754,7 +754,7 @@ app.get("/account", function(req, res){
 
 
                       if(req.user.status === "Active"){
-                        res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1, nameError: req.query.uerror});
+                        res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1, nameError: req.query.uerror, emailError: req.query.nerror});
                       }else if(req.user.status === "Canceled"){
                         res.render("account", {activeMessage: activeMessage1, cancelMessage: cancelMessage2});
                       }
@@ -830,7 +830,7 @@ app.post("/register", function(req, res){
   let databaseID;
 
 
- User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", email: req.body.username, hideMode: false, easyMode: false, normalMode: true, hardMode: false}, req.body.password, function(err, user){
+ User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", hideMode: false, easyMode: false, normalMode: true, hardMode: false}, req.body.password, function(err, user){
        if(err){
          console.log(err)
          res.redirect("/register?error=true");
@@ -1004,6 +1004,7 @@ if(buttonPressed === "red"){
         User.findByIdAndUpdate(req.user.id, { username: req.body.email }, function(err, foundUser){
           if(err){
             console.log(err)
+            res.redirect("/account?nerror=true");
           }
           else{
             if(foundUser){

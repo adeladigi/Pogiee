@@ -40,21 +40,25 @@ mongoose.connect("mongodb+srv://admin-juniorsnow14:alto1017@pogieecluster.knjcu.
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
- email: {
+   email: {
    type: String,
-   unique: true
+   unique: false
  },
  password: String,
  nickname: {
    type: String,
-   unique: true
+   unique: false
  },
  points: Number,
  level: String,
  status: String,
  subID: String,
  priceID: String,
- customerID: String
+ customerID: String,
+ hideMode: Boolean,
+ easyMode: Boolean,
+ normalMode: Boolean,
+ hardMode: Boolean,
 });
 
 
@@ -78,19 +82,19 @@ passport.deserializeUser(User.deserializeUser());
 const transporter2 = nodeMailer.createTransport({
  service: "Gmail",
    auth: {
-      user: "pogiee.ny@gmail.com",
-      pass: "alto1017"
+      user: process.env.USER_MAIL_KEY,
+      pass: process.env.PASS_MAIL_KEY
    }
 
  });
 
 
-
-const JWT_SECRET = "canadadry";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 
 app.get("/forgot-password", (req, res, next )=>{
-  res.render("forgot-password");
+  //res.render("forgot-password");
+  res.render("forgot-password", {success: req.query.success, error: req.query.error});
 });
 
 app.post("/forgot-password", (req, res, next)=>{
@@ -116,9 +120,16 @@ app.post("/forgot-password", (req, res, next)=>{
   User.findOne({ username: req.body.email }, function (err, foundUser) {
     if(err){
       console.log(err);
+      res.redirect("/forgot-password?error=true");
     }else{
-     console.log(foundUser.nickname);
-     sendingBoy(foundUser._id)
+      if(!foundUser){
+        res.redirect("/forgot-password?error=true");
+      }else{
+        sendingBoy(foundUser._id)
+        console.log(foundUser);
+      }
+
+
     }
   });
 
@@ -127,6 +138,8 @@ app.post("/forgot-password", (req, res, next)=>{
 
 function sendingBoy(newID){
   // User exist and now create a one time link valid for 15 minutes
+
+
 const secret =  JWT_SECRET;
 
   const payload  = {
@@ -136,8 +149,10 @@ const secret =  JWT_SECRET;
 
 
     const token = jwt.sign(payload, secret, {expiresIn: "15m"});
-    const link = "http://localhost:3000/reset-password/"+newID+"/"+token;
-
+    const link = "http://www.pogiee.com/reset-password/"+newID+"/"+token;
+    const text = "You are receiving this because you (or someone else) have requsted the reset of the password of your pogiee account."+
+                 "Please click on the following link, or paste this into your browser to complete the process. If you did not request a password "+
+                 "reset then contact Pogiee suppoprt."+"\n\n"+link
 
 
     const data = {
@@ -152,7 +167,7 @@ const secret =  JWT_SECRET;
        from: "pogiee.ny@gmail.com",
        to: email,
        subject: subject,
-       text: link
+       text: text
      }
 
      transporter2.sendMail(mailOptions, function(err, data){
@@ -166,7 +181,8 @@ const secret =  JWT_SECRET;
 
    sendMail(email, subject, link);
 
-  res.send("Password reset link has been sent  to your email.");
+  //res.send("Password reset link has been sent  to your email.");
+  res.redirect("/forgot-password?success=true")
 }
 
 
@@ -181,7 +197,7 @@ app.get("/reset-password/:id/:token", (req, res, next)=>{
  User.findOne({ _id: id}, function (err, foundUser) {
    if(err){
      console.log(err);
-     res.send("Invalid id");
+     res.send("Invalid link");
    }else{
       doTheRest(foundUser.username);
    }
@@ -194,10 +210,11 @@ function doTheRest(email){
 
   try {
    const payload = jwt.verify(token, secret);
-   res.render("reset-password", {email: email});
+   res.render("reset-password", {error: req.query.error, match: req.query.match });
   }catch(error){
    console.log(error.message);
-   res.send(error.message);
+   //res.send(error.message);
+   res.send("Invalid link");
   }
 }
 
@@ -215,7 +232,7 @@ const password2 = req.body.password2;
 User.findOne({ _id: id}, function (err, foundUser) {
   if(err){
     console.log(err);
-    res.send("Invalid id");
+    res.send("Invalid link");
   }else{
       stage3();
   }
@@ -248,7 +265,6 @@ function stage3(){
             }else{
               //do nogthing
               user.save();
-              res.send(user);
             }
         });
 
@@ -256,14 +272,11 @@ function stage3(){
       }
     });
 
-
-
-   // user.password = password;
-    //res.send(user);
-
+   res.redirect("/login");
   }catch(error){
    console.log(error.message);
-   res.send(error.message);
+   //res.send(error.message);
+   res.send("Invalid link");
   }
 
 }
@@ -273,50 +286,147 @@ function stage3(){
 
 
 
+app.post("/difficulty", function(req, res){
+  if(req.isAuthenticated()){
 
-app.post("/com", function(req, res){
+    const action = req.body.action;
+    //console.log(req.body)
+    if(action === "easy"){
 
- ajaxISS(req.body.word, process.env.API_KEY1, process.env.API_KEY2);
-  // new api request function
-  async function ajaxISS(word, key1, key2){
-
-  let errorCounter = 0
-    const apiRequstUrl = "https://api.wordnik.com/v4/word.json/"+word+"/audio?useCanonical=false&limit=10&api_key="+key1;
-    const response = await fetch(apiRequstUrl);
-
-    try {
-
-      const data = await response.json();
-      if(!data[1].fileUrl)
-      {
-         throw new SyntaxError("NO file On Name!")
-      }
-      else
-      {
-        errorCounter = 0
-        // asigning data to variables
-        const selectedWord = data[0].word;
-        const wordAudio = data[1].fileUrl;
-
-        //asigning sound file
-        audioUrl = wordAudio;
-
-         res.json({voice: audioUrl});
-      }
-
-    }catch(e)
-    {
-        if(errorCounter !== 30){
-          errorCounter ++;
-          console.log("API  ERROR / File Not Found: "+e)
-          setTimeout(ajaxISS(randomWord, key2), 1000);
+      User.findOneAndUpdate( {_id: req.user.id} , {easyMode: true, normalMode: false, hardMode: false}, function(err, foundUser){
+        if(err){
+          console.log(err);
         }else{
-          errorCounter = 0;
+            res.json({modeSetting: foundUser.hideMode});
         }
+
+      });
+
+    }else if(action === "normal"){
+
+      User.findOneAndUpdate( {_id: req.user.id} , {easyMode: false, normalMode: true, hardMode: false}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }else{
+            res.json({modeSetting: foundUser.hideMode});
+        }
+
+      });
+
+
+    }else if(action === "hard"){
+
+      User.findOneAndUpdate( {_id: req.user.id} , {easyMode: false, normalMode: false, hardMode: true}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }else{
+            res.json({modeSetting: foundUser.hideMode});
+        }
+
+      });
 
     }
 
+
+
+    // end of if statement
   }
+
+
+
+});
+
+
+app.post("/hidemode", function(req, res){
+  if(req.isAuthenticated()){
+
+    const action = req.body.action;
+
+   if(action === "on"){
+
+      User.findOneAndUpdate( {_id: req.user.id} , {hideMode: true}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }else{
+            res.json({modeSetting: foundUser.hideMode});
+        }
+
+      });
+    }else if(action === "off"){
+
+      User.findOneAndUpdate( {_id: req.user.id} , {hideMode: false}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }else{
+            res.json({modeSetting: foundUser.hideMode});
+        }
+
+      });
+
+    }
+
+
+
+
+
+    //end of if statement
+  }
+
+
+});
+
+
+
+app.post("/com", function(req, res){
+
+  if(req.isAuthenticated()){
+
+    ajaxISS(req.body.word, process.env.API_KEY1, process.env.API_KEY2);
+     // new api request function
+     async function ajaxISS(word, key1, key2){
+
+     let errorCounter = 0
+       const apiRequstUrl = "https://api.wordnik.com/v4/word.json/"+word+"/audio?useCanonical=false&limit=10&api_key="+key1;
+       const response = await fetch(apiRequstUrl);
+
+       try {
+
+         const data = await response.json();
+         if(!data[1].fileUrl)
+         {
+            throw new SyntaxError("NO file On Name!")
+         }
+         else
+         {
+           errorCounter = 0
+           // asigning data to variables
+           const selectedWord = data[0].word;
+           const wordAudio = data[1].fileUrl;
+
+           //asigning sound file
+           audioUrl = wordAudio;
+
+            res.json({voice: audioUrl});
+         }
+
+       }catch(e)
+       {
+           if(errorCounter !== 30){
+             errorCounter ++;
+             console.log("API  ERROR / File Not Found: "+e)
+             setTimeout(ajaxISS(randomWord, key2), 1000);
+           }else{
+             errorCounter = 0;
+           }
+
+       }
+      // end of funtion
+     }
+
+
+   // end of if statment
+  }
+
 
 });
 
@@ -495,7 +605,15 @@ res.render("login", {content: "Log In", error: req.query.error});
 app.get("/game", function(req, res){
  if(req.isAuthenticated()){
 
-  res.render("game", {content: "Welcome to Pogiee!"});
+  User.findById(req.user.id, function (err, foundUser) {
+       if(err){
+         console.log(err)
+       }else{
+         res.render("game", {content: "Welcome to Pogiee!", mode: req.user.hideMode, easyMode: req.user.easyMode, normalMode: req.user.normalMode, hardMode: req.user.hardMode,});
+       }
+  });
+
+  //res.render("game", {content: "Welcome to Pogiee!"});
 
  }
  else{
@@ -632,11 +750,11 @@ app.get("/account", function(req, res){
                    let activeMessage2 = "subscription is already active!"
 
                    let cancelMessage1 = ""
-                   let cancelMessage2 = "subscription is already canceled!"
+                   let cancelMessage2 = "subscription is already canceled!";
 
 
                       if(req.user.status === "Active"){
-                        res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1});
+                        res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1, nameError: req.query.uerror});
                       }else if(req.user.status === "Canceled"){
                         res.render("account", {activeMessage: activeMessage1, cancelMessage: cancelMessage2});
                       }
@@ -712,7 +830,7 @@ app.post("/register", function(req, res){
   let databaseID;
 
 
- User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", resetToken: "123"}, req.body.password, function(err, user){
+ User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", email: req.body.username, hideMode: false, easyMode: false, normalMode: true, hardMode: false}, req.body.password, function(err, user){
        if(err){
          console.log(err)
          res.redirect("/register?error=true");
@@ -896,9 +1014,11 @@ if(buttonPressed === "red"){
 
       }else if(buttonPressed === "username"){
 
+        // adding username to profile
         User.findByIdAndUpdate(req.user.id, { nickname: req.body.username }, function(err, foundUser){
           if(err){
             console.log(err)
+            res.redirect("/account?uerror=true");
           }
           else{
             if(foundUser){
