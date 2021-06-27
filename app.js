@@ -287,73 +287,90 @@ function stage3(){
 
 
 app.post("/difficulty", function(req, res){
-  const action = req.body.action;
-  //console.log(req.body)
-  if(action === "easy"){
+  if(req.isAuthenticated()){
 
-    User.findOneAndUpdate( {_id: req.user.id} , {easyMode: true, normalMode: false, hardMode: false}, function(err, foundUser){
-      if(err){
-        console.log(err);
-      }else{
-          res.json({modeSetting: foundUser.hideMode});
-      }
+    const action = req.body.action;
+    //console.log(req.body)
+    if(action === "easy"){
 
-    });
+      User.findOneAndUpdate( {_id: req.user.id} , {easyMode: true, normalMode: false, hardMode: false}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }else{
+            res.json({modeSetting: foundUser.hideMode});
+        }
 
-  }else if(action === "normal"){
+      });
 
-    User.findOneAndUpdate( {_id: req.user.id} , {easyMode: false, normalMode: true, hardMode: false}, function(err, foundUser){
-      if(err){
-        console.log(err);
-      }else{
-          res.json({modeSetting: foundUser.hideMode});
-      }
+    }else if(action === "normal"){
 
-    });
+      User.findOneAndUpdate( {_id: req.user.id} , {easyMode: false, normalMode: true, hardMode: false}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }else{
+            res.json({modeSetting: foundUser.hideMode});
+        }
+
+      });
 
 
-  }else if(action === "hard"){
+    }else if(action === "hard"){
 
-    User.findOneAndUpdate( {_id: req.user.id} , {easyMode: false, normalMode: false, hardMode: true}, function(err, foundUser){
-      if(err){
-        console.log(err);
-      }else{
-          res.json({modeSetting: foundUser.hideMode});
-      }
+      User.findOneAndUpdate( {_id: req.user.id} , {easyMode: false, normalMode: false, hardMode: true}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }else{
+            res.json({modeSetting: foundUser.hideMode});
+        }
 
-    });
+      });
 
+    }
+
+
+
+    // end of if statement
   }
+
+
 
 });
 
 
 app.post("/hidemode", function(req, res){
-   const action = req.body.action;
+  if(req.isAuthenticated()){
 
-  if(action === "on"){
+    const action = req.body.action;
 
-     User.findOneAndUpdate( {_id: req.user.id} , {hideMode: true}, function(err, foundUser){
-       if(err){
-         console.log(err);
-       }else{
-           res.json({modeSetting: foundUser.hideMode});
-       }
+   if(action === "on"){
 
-     });
-   }else if(action === "off"){
+      User.findOneAndUpdate( {_id: req.user.id} , {hideMode: true}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }else{
+            res.json({modeSetting: foundUser.hideMode});
+        }
 
-     User.findOneAndUpdate( {_id: req.user.id} , {hideMode: false}, function(err, foundUser){
-       if(err){
-         console.log(err);
-       }else{
-           res.json({modeSetting: foundUser.hideMode});
-       }
+      });
+    }else if(action === "off"){
 
-     });
+      User.findOneAndUpdate( {_id: req.user.id} , {hideMode: false}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }else{
+            res.json({modeSetting: foundUser.hideMode});
+        }
 
-   }
+      });
 
+    }
+
+
+
+
+
+    //end of if statement
+  }
 
 
 });
@@ -362,47 +379,54 @@ app.post("/hidemode", function(req, res){
 
 app.post("/com", function(req, res){
 
- ajaxISS(req.body.word, process.env.API_KEY1, process.env.API_KEY2);
-  // new api request function
-  async function ajaxISS(word, key1, key2){
+  if(req.isAuthenticated()){
 
-  let errorCounter = 0
-    const apiRequstUrl = "https://api.wordnik.com/v4/word.json/"+word+"/audio?useCanonical=false&limit=10&api_key="+key1;
-    const response = await fetch(apiRequstUrl);
+    ajaxISS(req.body.word, process.env.API_KEY1, process.env.API_KEY2);
+     // new api request function
+     async function ajaxISS(word, key1, key2){
 
-    try {
+     let errorCounter = 0
+       const apiRequstUrl = "https://api.wordnik.com/v4/word.json/"+word+"/audio?useCanonical=false&limit=10&api_key="+key1;
+       const response = await fetch(apiRequstUrl);
 
-      const data = await response.json();
-      if(!data[1].fileUrl)
-      {
-         throw new SyntaxError("NO file On Name!")
-      }
-      else
-      {
-        errorCounter = 0
-        // asigning data to variables
-        const selectedWord = data[0].word;
-        const wordAudio = data[1].fileUrl;
+       try {
 
-        //asigning sound file
-        audioUrl = wordAudio;
+         const data = await response.json();
+         if(!data[1].fileUrl)
+         {
+            throw new SyntaxError("NO file On Name!")
+         }
+         else
+         {
+           errorCounter = 0
+           // asigning data to variables
+           const selectedWord = data[0].word;
+           const wordAudio = data[1].fileUrl;
 
-         res.json({voice: audioUrl});
-      }
+           //asigning sound file
+           audioUrl = wordAudio;
 
-    }catch(e)
-    {
-        if(errorCounter !== 30){
-          errorCounter ++;
-          console.log("API  ERROR / File Not Found: "+e)
-          setTimeout(ajaxISS(randomWord, key2), 1000);
-        }else{
-          errorCounter = 0;
-        }
+            res.json({voice: audioUrl});
+         }
 
-    }
+       }catch(e)
+       {
+           if(errorCounter !== 30){
+             errorCounter ++;
+             console.log("API  ERROR / File Not Found: "+e)
+             setTimeout(ajaxISS(randomWord, key2), 1000);
+           }else{
+             errorCounter = 0;
+           }
 
+       }
+      // end of funtion
+     }
+
+
+   // end of if statment
   }
+
 
 });
 
