@@ -414,7 +414,7 @@ app.post("/com", function(req, res){
            if(errorCounter !== 30){
              errorCounter ++;
              console.log("API  ERROR / File Not Found: "+e)
-             setTimeout(ajaxISS(randomWord, key2), 1000);
+             setTimeout(ajaxISS(word, key1, key2), 1000);
            }else{
              errorCounter = 0;
            }
@@ -465,7 +465,7 @@ app.post("/de", function(req, res){
         if(errorCounter !== 30){
           errorCounter ++;
           console.log("API  ERROR / File Not Found: "+e)
-
+             setTimeout(ajaxD(word, key1, key2), 1000);
         }else{
           errorCounter = 0;
         }
