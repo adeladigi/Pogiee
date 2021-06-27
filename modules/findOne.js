@@ -26,3 +26,33 @@ function displayWord(wordList) {
   }
 
 }
+
+
+
+
+
+
+
+// Mobile
+ hideModeMobileBtn.addEventListener("click", function() {
+
+if(hideMode === false){
+   hideMode = true;
+   databaseSettings("on");
+   $hideMobileStatus.text("ON")
+   $hideMobileStatus.css("color", "#29bb89")
+}else if(hideMode === true){
+   hideMode = false;
+   databaseSettings("off");
+   $hideMobileStatus.text("OFF")
+   $hideMobileStatus.css("color", "#fff")
+}
+
+// check mode status Desktop
+checkModeStatusDesktop();
+
+// check mode status Mobile
+checkModeStatusMobile();
+
+
+});

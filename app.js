@@ -54,7 +54,8 @@ const userSchema = new mongoose.Schema ({
  status: String,
  subID: String,
  priceID: String,
- customerID: String
+ customerID: String,
+ hideMode: Boolean,
 });
 
 
@@ -282,6 +283,37 @@ function stage3(){
 
 
 
+app.post("/hidemode", function(req, res){
+   const action = req.body.action;
+
+  if(action === "on"){
+
+     User.findOneAndUpdate( {_id: req.user.id} , {hideMode: true}, function(err, foundUser){
+       if(err){
+         console.log(err);
+       }else{
+           res.json({modeSetting: foundUser.hideMode});
+       }
+
+     });
+   }else if(action === "off"){
+
+     User.findOneAndUpdate( {_id: req.user.id} , {hideMode: false}, function(err, foundUser){
+       if(err){
+         console.log(err);
+       }else{
+           res.json({modeSetting: foundUser.hideMode});
+       }
+
+     });
+
+   }
+
+
+
+});
+
+
 
 app.post("/com", function(req, res){
 
@@ -504,7 +536,15 @@ res.render("login", {content: "Log In", error: req.query.error});
 app.get("/game", function(req, res){
  if(req.isAuthenticated()){
 
-  res.render("game", {content: "Welcome to Pogiee!"});
+  User.findById(req.user.id, function (err, foundUser) {
+       if(err){
+         console.log(err)
+       }else{
+         res.render("game", {content: "Welcome to Pogiee!", mode: req.user.hideMode});
+       }
+  });
+
+  //res.render("game", {content: "Welcome to Pogiee!"});
 
  }
  else{
@@ -721,7 +761,7 @@ app.post("/register", function(req, res){
   let databaseID;
 
 
- User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", email: req.body.username}, req.body.password, function(err, user){
+ User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", email: req.body.username, hideMode: false}, req.body.password, function(err, user){
        if(err){
          console.log(err)
          res.redirect("/register?error=true");

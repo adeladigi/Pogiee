@@ -57,8 +57,17 @@ var easyMode = false;
 var normalMode = true;
 var hardMode = false;
 
-// game mode
-var hideMode = false;
+// checking hide mode setting
+var settingString = document.getElementById("mode-setting-value");
+
+if(settingString.value === "false"){
+  // game mode
+  var hideMode = false;
+}else if (settingString.value === "true"){
+  // game mode
+  var hideMode = true;
+}
+
 
 var wrongAnswerFlag = false;
 
@@ -89,7 +98,6 @@ var $deskHardBtn = $("#hard-desktop-btn");
 $dropDownMenu.hide();
 $settingsMenu.hide();
 $desktopSettings.hide();
-
 
 
 // check level status mobile
@@ -161,10 +169,12 @@ hideModeBtn.addEventListener("click", function() {
 
 if(hideMode === false){
    hideMode = true;
+   SetHidemode("on");
    $hideStatus.text("ON")
    $hideStatus.css("color", "#29bb89")
 }else if(hideMode === true){
    hideMode = false;
+   SetHidemode("off");
    $hideStatus.text("OFF")
    $hideStatus.css("color", "#fff")
 }
@@ -183,10 +193,12 @@ checkModeStatusMobile();
 
 if(hideMode === false){
    hideMode = true;
+   SetHidemode("on");
    $hideMobileStatus.text("ON")
    $hideMobileStatus.css("color", "#29bb89")
 }else if(hideMode === true){
    hideMode = false;
+   SetHidemode("off");
    $hideMobileStatus.text("OFF")
    $hideMobileStatus.css("color", "#fff")
 }
@@ -693,6 +705,31 @@ function apiGetWord(word){
            .then(function(data){
             let audio = new Audio(data.voice);
             audio.play();
+           });
+
+}
+
+
+
+
+function SetHidemode(action){
+
+  const ship = {
+     action: action,
+  };
+
+  fetch("/hidemode", {
+      method: "POST",
+      body: JSON.stringify(ship),
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }}).then(response => response.json())
+           .then(function(data){
+              let mode = data.modeSetting;
+
+              console.log("database is mode: "+mode);
+
            });
 
 }
