@@ -426,6 +426,7 @@ function hideWord() {
   // if user clicks sound icon
   soundButton.addEventListener("click", function(){
    apiGetWord(randomWord)
+   apiGetDefinition(randomWord)
   });
 
   $hamMenu.click(function(){
