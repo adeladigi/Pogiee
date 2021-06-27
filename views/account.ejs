@@ -52,7 +52,7 @@
                <p>Enter new username below.</p>
                <form action="/account" method="post">
                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="new username" aria-label="Recipient's username" aria-describedby="button-addon2" name="username">
+                    <input type="text" class="form-control" placeholder="new username" aria-label="Recipient's username" aria-describedby="button-addon2" name="username" maxlength="14" required>
                     <input type="hidden" name="btn" value="username">
                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
                 </div>
@@ -74,7 +74,7 @@
                <p>Enter new email below.</p>
                <form action="/account" method="post">
                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="new email" aria-label="Recipient's username" aria-describedby="button-addon2" name="email">
+                    <input type="email" class="form-control" placeholder="new email" aria-label="Recipient's username" aria-describedby="button-addon2" name="email" required>
                     <input type="hidden" name="btn" value="email">
                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
                 </div>
