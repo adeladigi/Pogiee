@@ -222,6 +222,8 @@ color: #f05945;
   text-align: center;
   position: relative;
   top: 220px;
+  width: 300px;
+  margin: auto;
 }
 
 /* end of mobile */
@@ -413,6 +415,7 @@ color: #f05945;
     text-align: center;
     position: relative;
     top: 380px;
+    width: 600px;
   }
 
 }

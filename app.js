@@ -434,6 +434,7 @@ app.post("/com", function(req, res){
 
 app.post("/de", function(req, res){
 
+
   ajaxD(req.body.word, process.env.API_KEY1, process.env.API_KEY2);
 
   // new api request function
