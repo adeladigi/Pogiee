@@ -52,18 +52,49 @@ var $hideMobileStatus = $("#hide-mobile-status");
 var points =  0;
 var wrongWords = 0;
 
-// difficulty modes
-var easyMode = false;
-var normalMode = true;
-var hardMode = false;
+
+// difficulty vaules
+var easyValue = document.getElementById("easy-setting-value").value;
+var normalValue = document.getElementById("normal-setting-value").value;
+var hardValue = document.getElementById("hard-setting-value").value;
+
+console.log("easy: "+easyValue)
+console.log("normal: "+normalValue)
+console.log("hard: "+hardValue)
+
+
+if(easyValue === "true" && normalValue === "false" && hardValue === "false"){
+
+  // difficulty modes
+  var easyMode = true;
+  var normalMode = false;
+  var hardMode = false;
+
+}else if(easyValue === "false" && normalValue === "true" && hardValue === "false"){
+
+  // difficulty modes
+  var easyMode = false;
+  var normalMode = true;
+  var hardMode = false;
+
+}else if(easyValue === "false" && normalValue === "false" && hardValue === "true"){
+
+  // difficulty modes
+  var easyMode = false;
+  var normalMode = false;
+  var hardMode = true;
+}else{
+  console.log("error with difficulty settings");
+}
+
 
 // checking hide mode setting
-var settingString = document.getElementById("mode-setting-value");
+var settingString = document.getElementById("mode-setting-value").value;
 
-if(settingString.value === "false"){
+if(settingString === "false"){
   // game mode
   var hideMode = false;
-}else if (settingString.value === "true"){
+}else if (settingString === "true"){
   // game mode
   var hideMode = true;
 }
@@ -416,6 +447,7 @@ function hideWord() {
 
 // level clicks mobile
 $easyButton.click(function(){
+  SetDifficulty("easy");
 
   easyMode = true;
   normalMode = false;
@@ -431,6 +463,7 @@ $easyButton.click(function(){
 })
 
 $normalButton.click(function(){
+  SetDifficulty("normal");
 
   normalMode = true;
   easyMode = false;
@@ -447,6 +480,7 @@ $normalButton.click(function(){
 
 
 $hardButton.click(function(){
+  SetDifficulty("hard");
 
   normalMode = false;
   easyMode = false;
@@ -471,6 +505,7 @@ $dtSetBtn.click(function(){
 
 // level clicks tablet / desktop
 $deskEasyBtn.click(function(){
+  SetDifficulty("easy");
 
   easyMode = true;
   normalMode = false;
@@ -486,6 +521,7 @@ $deskEasyBtn.click(function(){
 })
 
 $deskNoramlBtn.click(function(){
+  SetDifficulty("normal");
 
   normalMode = true;
   easyMode = false;
@@ -502,6 +538,7 @@ $deskNoramlBtn.click(function(){
 
 
 $deskHardBtn.click(function(){
+  SetDifficulty("hard");
 
   normalMode = false;
   easyMode = false;
@@ -729,6 +766,31 @@ function SetHidemode(action){
               let mode = data.modeSetting;
 
               console.log("database is mode: "+mode);
+
+           });
+
+}
+
+
+function SetDifficulty(action){
+
+  const ship = {
+     action: action,
+  };
+
+  fetch("/difficulty", {
+      method: "POST",
+      body: JSON.stringify(ship),
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }}).then(response => response.json())
+           .then(function(data){
+              let mode = data.modeSetting;
+
+              console.log("easy mode is: "+mode);
+              console.log("normal mode is: "+mode);
+              console.log("hard mode is: "+mode);
 
            });
 

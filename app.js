@@ -56,6 +56,9 @@ const userSchema = new mongoose.Schema ({
  priceID: String,
  customerID: String,
  hideMode: Boolean,
+ easyMode: Boolean,
+ normalMode: Boolean,
+ hardMode: Boolean,
 });
 
 
@@ -281,6 +284,48 @@ function stage3(){
 
 });
 
+
+
+app.post("/difficulty", function(req, res){
+  const action = req.body.action;
+  //console.log(req.body)
+  if(action === "easy"){
+
+    User.findOneAndUpdate( {_id: req.user.id} , {easyMode: true, normalMode: false, hardMode: false}, function(err, foundUser){
+      if(err){
+        console.log(err);
+      }else{
+          res.json({modeSetting: foundUser.hideMode});
+      }
+
+    });
+
+  }else if(action === "normal"){
+
+    User.findOneAndUpdate( {_id: req.user.id} , {easyMode: false, normalMode: true, hardMode: false}, function(err, foundUser){
+      if(err){
+        console.log(err);
+      }else{
+          res.json({modeSetting: foundUser.hideMode});
+      }
+
+    });
+
+
+  }else if(action === "hard"){
+
+    User.findOneAndUpdate( {_id: req.user.id} , {easyMode: false, normalMode: false, hardMode: true}, function(err, foundUser){
+      if(err){
+        console.log(err);
+      }else{
+          res.json({modeSetting: foundUser.hideMode});
+      }
+
+    });
+
+  }
+
+});
 
 
 app.post("/hidemode", function(req, res){
@@ -540,7 +585,7 @@ app.get("/game", function(req, res){
        if(err){
          console.log(err)
        }else{
-         res.render("game", {content: "Welcome to Pogiee!", mode: req.user.hideMode});
+         res.render("game", {content: "Welcome to Pogiee!", mode: req.user.hideMode, easyMode: req.user.easyMode, normalMode: req.user.normalMode, hardMode: req.user.hardMode,});
        }
   });
 
@@ -761,7 +806,7 @@ app.post("/register", function(req, res){
   let databaseID;
 
 
- User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", email: req.body.username, hideMode: false}, req.body.password, function(err, user){
+ User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", email: req.body.username, hideMode: false, easyMode: false, normalMode: true, hardMode: false}, req.body.password, function(err, user){
        if(err){
          console.log(err)
          res.redirect("/register?error=true");
