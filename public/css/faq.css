@@ -151,6 +151,11 @@ footer {
     padding: 30px;
   }
 
+  .answer-box p{
+   max-width: 700px;
+   margin: auto;
+  }
+
 
 }
 
@@ -159,6 +164,11 @@ footer {
   .question-box {
     border-bottom: 1px solid #000;
     padding: 40px;
+  }
+
+  .answer-box p{
+   max-width: 700px;
+   margin: auto;
   }
 
 }

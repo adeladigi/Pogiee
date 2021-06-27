@@ -39,6 +39,13 @@
            <div class="menu-contanier">
 
              <div class="username-box">
+
+               <% if( nameError === "true"){ %>
+                 <div class="error-message-div">
+                   <p>Username already in use.</p>
+                 </div>
+             <%  }   %>
+
               <h3 id="username-drop-btn" >Update username</h3>
              </div>
              <div class="username-drop-menu">

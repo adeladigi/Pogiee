@@ -192,6 +192,11 @@ align-items: center;
   color: red;
 }
 
+.error-message-div {
+  color: red;
+  height: 24px;
+}
+
 @media (min-width: 720px){
 
   .drop-nav-item {

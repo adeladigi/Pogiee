@@ -726,11 +726,11 @@ app.get("/account", function(req, res){
                    let activeMessage2 = "subscription is already active!"
 
                    let cancelMessage1 = ""
-                   let cancelMessage2 = "subscription is already canceled!"
+                   let cancelMessage2 = "subscription is already canceled!";
 
 
                       if(req.user.status === "Active"){
-                        res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1});
+                        res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1, nameError: req.query.uerror});
                       }else if(req.user.status === "Canceled"){
                         res.render("account", {activeMessage: activeMessage1, cancelMessage: cancelMessage2});
                       }
@@ -990,9 +990,11 @@ if(buttonPressed === "red"){
 
       }else if(buttonPressed === "username"){
 
+        // adding username to profile
         User.findByIdAndUpdate(req.user.id, { nickname: req.body.username }, function(err, foundUser){
           if(err){
             console.log(err)
+            res.redirect("/account?uerror=true");
           }
           else{
             if(foundUser){

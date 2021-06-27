@@ -56,3 +56,45 @@ checkModeStatusMobile();
 
 
 });
+
+
+
+
+
+
+
+
+
+
+// checking if username already in use
+User.findOne({ nickname: req.body.username }, function (err, foundUser) {
+  if(err){
+    console.log(err)
+    res.redirect("/account?uerror=true");
+  }
+  else{
+    if(foundUser){
+
+       res.redirect("/account?uerror=true");
+    }
+  }
+});
+
+
+
+// adding username to profile
+User.findByIdAndUpdate(req.user.id, { nickname: req.body.username }, function(err, foundUser){
+  if(err){
+    console.log(err)
+    res.redirect("/account?uerror=true");
+  }
+  else{
+    if(foundUser){
+       res.redirect("/account");
+    }
+  }
+});
+
+}else{
+console.log(error);
+}
