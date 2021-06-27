@@ -22,7 +22,8 @@ const soundButton = document.querySelector(".sound-icon");
 var startGame = false;
 var levelCount = 1;
 var currentLevel = "Level: " + levelCount;
-var h1Saying = document.querySelector("h1");
+var h1Saying = document.getElementById("h1-saying");
+var wordDefinition = document.getElementById("definition-saying");
 var h2Saying = document.querySelector("h2");
 var $correctH2 = $("#correct-way")
 var $wrongH2 = $("#wrong-way")
@@ -45,9 +46,6 @@ var $hideStatus = $("#hide-status");
 var hideModeMobileBtn = document.getElementById("mode-mobile-btn");
 //var hideStatus = document.getElementById("hide-status");
 var $hideMobileStatus = $("#hide-mobile-status");
-
-
-
 
 var points =  0;
 var wrongWords = 0;
@@ -386,11 +384,13 @@ function displayWord(wordList) {
     var arrayNumber = Math.floor(Math.random() * wordList.length);
     var maxWords = wordList.length;
     h1Saying.innerText = wordList[arrayNumber];
+
     //console.log("number:"+arrayNumber);
     randomWord = wordList[arrayNumber];
 
      //current function being used for api calls
     apiGetWord(randomWord);
+    apiGetDefinition(randomWord);
 
     wordList.splice(arrayNumber, 1);
     //console.log("new word:"+ randomWord);
@@ -404,6 +404,7 @@ function displayWord(wordList) {
 
      //current function being used for api calls
     apiGetWord(randomWord);
+    apiGetDefinition(randomWord);
 
     wordList.splice(arrayNumber, 1);
 
@@ -639,6 +640,8 @@ function showMistakes(word, userspelling){
  $correctH2.text(word)
  $wrongH2.text(userspelling)
 
+ wordDefinition.innerText = "";
+
   setTimeout(hideMistakes, 4000);
 
 }
@@ -657,6 +660,7 @@ function noErrors()
 
   if (startGame === true && normalMode === true && points < 100 && wrongWords != 3) {
     h1Saying.innerText = "Next word is";
+    wordDefinition.innerText = "";
 
     setTimeout(displayWord(normalList), 3000);
     setTimeout(hideWord, 3000);
@@ -738,10 +742,32 @@ function apiGetWord(word){
            .then(function(data){
             let audio = new Audio(data.voice);
             audio.play();
+
            });
 
 }
 
+
+function apiGetDefinition(word){
+
+  const ship = {
+     word: word,
+  };
+
+  fetch("/de", {
+      method: "POST",
+      body: JSON.stringify(ship),
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }}).then(response => response.json())
+           .then(function(data){
+
+           wordDefinition.innerHTML = data.text;
+
+           });
+
+}
 
 
 

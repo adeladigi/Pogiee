@@ -430,13 +430,65 @@ app.post("/com", function(req, res){
 
 });
 
+
+
+app.post("/de", function(req, res){
+
+  ajaxD(req.body.word, process.env.API_KEY1, process.env.API_KEY2);
+
+  // new api request function
+  async function ajaxD(word, key1, key2){
+
+  let errorCounter = 0
+    const apiRequstUrl = "https://api.wordnik.com/v4/word.json/"+word+"/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key="+key1
+    const response = await fetch(apiRequstUrl);
+
+    try {
+
+      const data = await response.json();
+      if(!data[1].text)
+      {
+         throw new SyntaxError("NO file On Name!")
+      }
+      else
+      {
+        errorCounter = 0
+        // asigning data to variables
+        const yup = data[1].text;
+
+        res.json({text: yup});
+
+      }
+
+    }catch(e)
+    {
+        if(errorCounter !== 30){
+          errorCounter ++;
+          console.log("API  ERROR / File Not Found: "+e)
+
+        }else{
+          errorCounter = 0;
+        }
+
+    }
+   // end of funtion
+  }
+
+
+
+
+
+});
+
+
+
+
 app.get("/faq", function(req, res){
     res.render("faq");
 });
 
 
 app.get("/check", function(req, res){
-
 
   const plan = stripe.plans.retrieve(req.user.priceID, function(err, plan){
     if(err){
@@ -454,8 +506,6 @@ app.get("/check", function(req, res){
     }
 
   });
-
-
 
 });
 
@@ -756,7 +806,7 @@ app.get("/account", function(req, res){
                       if(req.user.status === "Active"){
                         res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1, nameError: req.query.uerror, emailError: req.query.nerror});
                       }else if(req.user.status === "Canceled"){
-                        res.render("account", {activeMessage: activeMessage1, cancelMessage: cancelMessage2});
+                        res.render("account", {activeMessage: activeMessage1, cancelMessage: cancelMessage2, nameError: req.query.uerror, emailError: req.query.nerror});
                       }
 
                  //end of inner else statement

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
+
 body {
   background-image: url("https://wallpaperaccess.com/full/1145374.jpg");
   background: cover;
@@ -214,6 +216,14 @@ color: #f05945;
   color: #fff;
 }
 
+#definition-saying {
+  color: #fff;
+  font-family: 'Days One', sans-serif;
+  text-align: center;
+  position: relative;
+  top: 220px;
+}
+
 /* end of mobile */
 
 @media (min-width: 720px){
@@ -397,6 +407,14 @@ color: #f05945;
     color: #fff;
   }
 
+
+  #definition-saying {
+    color: #fff;
+    text-align: center;
+    position: relative;
+    top: 380px;
+  }
+
 }
 /* end of tablet layout*/
 
@@ -524,6 +542,13 @@ color: #f05945;
     font-family: 'Anton', sans-serif;
     margin: auto;
     margin-top: 10px;
+  }
+
+  #definition-saying {
+    color: #fff;
+    text-align: center;
+    position: relative;
+    top: 300px;
   }
 
 }
