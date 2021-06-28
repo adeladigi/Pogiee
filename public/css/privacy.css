@@ -41,7 +41,7 @@ nav h2 {
   margin: auto;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
+  padding: 20px;
   position: relative;
   top: 50px;
 }
