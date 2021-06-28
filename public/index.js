@@ -145,12 +145,11 @@ var normalList = ["consent", "elicit", "authentic", "collusion", "acceptance", "
  "momentum", "multitude", "lullaby", "reckoning", "zealous", "resin", "mayonnaise", "shrunken", "season", "brainstorm", "culture", "drastic",
  "envious", "extinction", "gasoline", "fraction", "government", "hazardous", "interview", "library", "material", "mathematics", "encouraging",
 "economic", "proscribe", "remiss", "calamity", "dumbbell","cemetery", "weird", "harass", "eureka", "hobnob", "nemesis", "aloft", "debunk",
-"mature", "conjecture", "scrimp", "ungainly", "endorse", "entail", "eradicate", "truncate", "tumult", "abet", "corollary", "excavate", "exonerate",
-"shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary", "acerbic", "yeoman", "demure", "insipid", "glib",
-"cogent", "paragon", "affable", "levity", "placid", "vapid", "nadir", "tenuous", "abase", "surly", "stolid", "canard", "fervid", "apathy", "zealot",
-"lucid", "intrepid", "clemency", "deft", "obviate", "cupidity", "torpid", "strident", "languid", "discursive", "anodyne", "semaphore", "demur", "congenial",
-"stoic", "audacious", "decorous", "sardonic", "restive", "abate", "carp", "tremulous", "fathom", "ersatz", "abhor", "augury", "cosset", "ignoble", "carouse",
-"pellucid", "bereft"];
+ "mature", "conjecture", "scrimp", "ungainly", "endorse", "entail", "eradicate", "truncate", "tumult", "abet", "corollary", "excavate", "exonerate",
+  "shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary", "acerbic", "yeoman", "demure", "insipid", "glib",
+  "cogent", "paragon", "affable", "levity", "placid", "vapid", "nadir", "tenuous", "abase", "surly", "stolid", "canard", "fervid", "apathy", "zealot",
+  "lucid", "intrepid", "clemency", "deft", "obviate", "cupidity", "torpid", "strident", "languid", "discursive", "anodyne", "semaphore", "demur", "congenial",
+  "stoic", "audacious", "decorous", "sardonic","restive", "abate", "carp", "tremulous", "fathom", "ersatz", "abhor", "augury", "cosset", "ignoble", "carouse", "pellucid", "bereft"];
 
 
 var easyList = ["call", "air", "also", "both", "family", "after", "any", "dish", "clock", "around", "barn", "back", "cold", "animal", "always",
@@ -159,9 +158,9 @@ var easyList = ["call", "air", "also", "both", "family", "after", "any", "dish",
 "drum", "kiss", "large", "light", "line", "lion", "list", "little", "lock", "long", "look", "loud", "lunch", "made", "mess", "might", "most", "much",
 "must", "new", "night", "nine", "now", "off", "only", "or", "our", "out", "out", "path", "place", "plus", "pool", "put", "rabbit", "read", "rest",
 "right", "rock", "said", "sea", "second", "seem", "send", "seven", "shape", "sight", "silly", "sing", "sister", "slid", "sound", "stamp", "state",
-"still","stone", "such", "take", "tell", "thing", "ton", "treat", "trick", "tune", "under", "use", "very" "wash", "well", "went", "yard", "year", "done", "lab",
-"the", "down", "are", "car", "she", "why", "at", "all", "what", "was", "with", "which", "each", "these", "would", "from", "water", "many", "other", "look", "number",
- "part", "write", "have", "turn", "came", "over", "know", "live", "try", "great", "study", "move", "world", "boon"];
+"still","stone", "such", "take", "tell", "thing", "ton", "treat", "trick", "tune", "under", "use", "very", "wash", "well", "went", "yard", "year",
+ "done", "lab", "the", "down", "are", "car", "she", "why", "at", "all", "what", "was", "with", "which", "each", "these", "would", "from",
+"water", "many", "other", "look", "number", "part", "write", "have", "turn", "came", "over", "know", "live", "try", "great", "study", "move", "world", "boon"];
 
 
 
@@ -271,12 +270,11 @@ playAgain.addEventListener("click", function() {
      "momentum", "multitude", "lullaby", "reckoning", "zealous", "resin", "mayonnaise", "shrunken", "season", "brainstorm", "culture", "drastic",
      "envious", "extinction", "gasoline", "fraction", "government", "hazardous", "interview", "library", "material", "mathematics", "encouraging",
     "economic", "proscribe", "remiss", "calamity", "dumbbell","cemetery", "weird", "harass", "eureka", "hobnob", "nemesis", "aloft", "debunk",
-    "mature", "conjecture", "scrimp", "ungainly", "endorse", "entail", "eradicate", "truncate", "tumult", "abet", "corollary", "excavate", "exonerate",
-    "shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary", "acerbic", "yeoman", "demure", "insipid", "glib",
-    "cogent", "paragon", "affable", "levity", "placid", "vapid", "nadir", "tenuous", "abase", "surly", "stolid", "canard", "fervid", "apathy", "zealot",
-    "lucid", "intrepid", "clemency", "deft", "obviate", "cupidity", "torpid", "strident", "languid", "discursive", "anodyne", "semaphore", "demur", "congenial",
-    "stoic", "audacious", "decorous", "sardonic", "restive", "abate", "carp", "tremulous", "fathom", "ersatz", "abhor", "augury", "cosset", "ignoble", "carouse",
-    "pellucid", "bereft"];
+     "mature", "conjecture", "scrimp", "ungainly", "endorse", "entail", "eradicate", "truncate", "tumult", "abet", "corollary", "excavate", "exonerate",
+      "shrewd", "wallop", "affinity", "diffuse", "ensue", "guardian", "influx", "longevity", "ordinary", "acerbic", "yeoman", "demure", "insipid", "glib",
+      "cogent", "paragon", "affable", "levity", "placid", "vapid", "nadir", "tenuous", "abase", "surly", "stolid", "canard", "fervid", "apathy", "zealot",
+      "lucid", "intrepid", "clemency", "deft", "obviate", "cupidity", "torpid", "strident", "languid", "discursive", "anodyne", "semaphore", "demur", "congenial",
+      "stoic", "audacious", "decorous", "sardonic","restive", "abate", "carp", "tremulous", "fathom", "ersatz", "abhor", "augury", "cosset", "ignoble", "carouse", "pellucid", "bereft"];
 
 
 
@@ -286,9 +284,9 @@ playAgain.addEventListener("click", function() {
  "drum", "kiss", "large", "light", "line", "lion", "list", "little", "lock", "long", "look", "loud", "lunch", "made", "mess", "might", "most", "much",
  "must", "new", "night", "nine", "now", "off", "only", "or", "our", "out", "out", "path", "place", "plus", "pool", "put", "rabbit", "read", "rest",
  "right", "rock", "said", "sea", "second", "seem", "send", "seven", "shape", "sight", "silly", "sing", "sister", "slid", "sound", "stamp", "state",
- "still","stone", "such", "take", "tell", "thing", "ton", "treat", "trick", "tune", "under", "use", "very" "wash", "well", "went", "yard", "year", "done", "lab",
- "the", "down", "are", "car", "she", "why", "at", "all", "what", "was", "with", "which", "each", "these", "would", "from", "water", "many", "other", "look", "number",
-  "part", "write", "have", "turn", "came", "over", "know", "live", "try", "great", "study", "move", "world", "boon"];
+ "still","stone", "such", "take", "tell", "thing", "ton", "treat", "trick", "tune", "under", "use", "very", "wash", "well", "went", "yard", "year",
+  "done", "lab", "the", "down", "are", "car", "she", "why", "at", "all", "what", "was", "with", "which", "each", "these", "would", "from",
+ "water", "many", "other", "look", "number", "part", "write", "have", "turn", "came", "over", "know", "live", "try", "great", "study", "move", "world", "boon"];
 
 
 
@@ -358,7 +356,7 @@ submitButton.addEventListener("click", function(arrayNumber) {
   } else {
 
     wrongAnswerFlag = true;
-    console.log("wrong answer flad = "+wrongAnswerFlag)
+    //console.log("wrong answer flad = "+wrongAnswerFlag)
     showMistakes(randomWord, userInput)
     h1Saying.innerText = "Wrong!";
     wrongWords++;
