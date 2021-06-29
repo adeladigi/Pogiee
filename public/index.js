@@ -340,7 +340,7 @@ function playGame() {
 submitButton.addEventListener("click", function(arrayNumber) {
   var userInput = document.querySelector("input").value;
 
-  if (userInput.toLocaleLowerCase() === randomWord) {
+  if (userInput.toLocaleLowerCase().split(" ").join("") === randomWord) {
     points = points + 10;
     correctWords++;
     pointsDisplay.innerText = points;
