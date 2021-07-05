@@ -40,14 +40,14 @@ mongoose.connect("mongodb+srv://admin-juniorsnow14:alto1017@pogieecluster.knjcu.
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
-   email: {
+   username: {
    type: String,
-   unique: false
+   unique: true
  },
  password: String,
  nickname: {
    type: String,
-   unique: false
+   unique: true
  },
  points: Number,
  level: String,
@@ -126,7 +126,7 @@ app.post("/forgot-password", (req, res, next)=>{
         res.redirect("/forgot-password?error=true");
       }else{
         sendingBoy(foundUser._id)
-        console.log(foundUser);
+
       }
 
 
@@ -149,7 +149,7 @@ const secret =  JWT_SECRET;
 
 
     const token = jwt.sign(payload, secret, {expiresIn: "15m"});
-    const link = "http://www.pogiee.com/reset-password/"+newID+"/"+token;
+    const link = "https://www.pogiee.com/reset-password/"+newID+"/"+token;
     const text = "You are receiving this because you (or someone else) have requsted the reset of the password of your pogiee account."+
                  "Please click on the following link, or paste this into your browser to complete the process. If you did not request a password "+
                  "reset then contact Pogiee suppoprt."+"\n\n"+link
@@ -414,7 +414,7 @@ app.post("/com", function(req, res){
            if(errorCounter !== 30){
              errorCounter ++;
              console.log("API  ERROR / File Not Found: "+e)
-             setTimeout(ajaxISS(randomWord, key2), 1000);
+             //setTimeout(ajaxISS(word, key1, key2), 1000);
            }else{
              errorCounter = 0;
            }
@@ -430,13 +430,66 @@ app.post("/com", function(req, res){
 
 });
 
+
+
+app.post("/de", function(req, res){
+
+
+  ajaxD(req.body.word, process.env.API_KEY1, process.env.API_KEY2);
+
+  // new api request function
+  async function ajaxD(word, key1, key2){
+
+  let errorCounter = 0
+    const apiRequstUrl = "https://api.wordnik.com/v4/word.json/"+word+"/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key="+key1
+    const response = await fetch(apiRequstUrl);
+
+    try {
+
+      const data = await response.json();
+      if(!data[1].text)
+      {
+         throw new SyntaxError("NO file On Name!")
+      }
+      else
+      {
+        errorCounter = 0
+        // asigning data to variables
+        const yup = data[1].text;
+
+        res.json({text: yup});
+
+      }
+
+    }catch(e)
+    {
+        if(errorCounter !== 30){
+          errorCounter ++;
+          console.log("API  ERROR / File Not Found: "+e)
+             //setTimeout(ajaxD(word, key1, key2), 1000);
+        }else{
+          errorCounter = 0;
+        }
+
+    }
+   // end of funtion
+  }
+
+
+
+
+
+});
+
+
+
+
 app.get("/faq", function(req, res){
     res.render("faq");
 });
 
 
 app.get("/check", function(req, res){
-
 
   const plan = stripe.plans.retrieve(req.user.priceID, function(err, plan){
     if(err){
@@ -454,8 +507,6 @@ app.get("/check", function(req, res){
     }
 
   });
-
-
 
 });
 
@@ -609,7 +660,7 @@ app.get("/game", function(req, res){
        if(err){
          console.log(err)
        }else{
-         res.render("game", {content: "Welcome to Pogiee!", mode: req.user.hideMode, easyMode: req.user.easyMode, normalMode: req.user.normalMode, hardMode: req.user.hardMode,});
+         res.render("game", {content: "Welcome to Pogiee!", mode: req.user.hideMode, easyMode: req.user.easyMode, normalMode: req.user.normalMode, hardMode: req.user.hardMode, points: req.user.points});
        }
   });
 
@@ -754,9 +805,9 @@ app.get("/account", function(req, res){
 
 
                       if(req.user.status === "Active"){
-                        res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1, nameError: req.query.uerror});
+                        res.render("account", {activeMessage: activeMessage2, cancelMessage: cancelMessage1, nameError: req.query.uerror, emailError: req.query.nerror});
                       }else if(req.user.status === "Canceled"){
-                        res.render("account", {activeMessage: activeMessage1, cancelMessage: cancelMessage2});
+                        res.render("account", {activeMessage: activeMessage1, cancelMessage: cancelMessage2, nameError: req.query.uerror, emailError: req.query.nerror});
                       }
 
                  //end of inner else statement
@@ -830,7 +881,7 @@ app.post("/register", function(req, res){
   let databaseID;
 
 
- User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", email: req.body.username, hideMode: false, easyMode: false, normalMode: true, hardMode: false}, req.body.password, function(err, user){
+ User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "unknown", status: "Active", hideMode: false, easyMode: false, normalMode: true, hardMode: false}, req.body.password, function(err, user){
        if(err){
          console.log(err)
          res.redirect("/register?error=true");
@@ -904,31 +955,13 @@ app.post("/login", function(req, res){
 
 app.post("/points", function(req, res){
 let currentPoints = req.user.points;
-let points = req.body.points;
+let newPoints = req.body.points;
 let level = "";
 let data = req.body;
 
-const newPoints = currentPoints + points;
+console.log(req.body);
 
-if(newPoints >= 0 && newPoints < 1000){
- level = "Newbie";
-}else if(newPoints >= 1000 && newPoints < 2000){
-  level = "Novice";
-}else if(newPoints >= 2000 && newPoints < 4000){
-  level = "Amateur";
-}else if(newPoints >= 4000 && newPoints < 6000){
-  level = "Exceptional";
-}else if(newPoints >= 6000 && newPoints < 9000){
-  level = "Scholar";
-}else if(newPoints >= 9000 && newPoints < 1300){
-  level = "Lengendary";
-}else if(newPoints >= 13000 && newPoints < 17000){
-  level = "Mythic";
-}else if(newPoints >= 25000){
-  level = "Big Brain";
-}
-
-
+if(newPoints > currentPoints){
   User.findByIdAndUpdate(req.user.id, {points: newPoints, level: level}, function(err, foundUser){
     if(err){
       console.log(err)
@@ -938,7 +971,11 @@ if(newPoints >= 0 && newPoints < 1000){
          res.redirect("/game");
       }
     }
-  })
+  });
+
+}else{
+  // do nothing
+}
 
 
 });
@@ -1004,6 +1041,7 @@ if(buttonPressed === "red"){
         User.findByIdAndUpdate(req.user.id, { username: req.body.email }, function(err, foundUser){
           if(err){
             console.log(err)
+            res.redirect("/account?nerror=true");
           }
           else{
             if(foundUser){

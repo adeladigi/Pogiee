@@ -1,4 +1,46 @@
 
+// Timer setup/ functions
+let startingMinutes = 2;
+let time = startingMinutes * 60;
+let timerflag = false;
+
+// clock element
+const countDownElement = document.getElementById("timer-function");
+
+//Timer Update function
+function updateCountdown(){
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60.0;
+  countDownElement.style.visibility = "visible";
+  countDownElement.innerHTML = " "+minutes+" : "+seconds+" ";
+
+  if(time <= 0){
+    countDownElement.style.visibility = "hidden";
+    // function keeps calling over and over again
+  }else{
+    time--;
+  }
+
+}
+
+// Adds seconds when answer correct
+function addSeconds(sec){
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60.0;
+  time = time + sec;
+}
+
+// hids timer
+function hideTimer(){
+  time = 0;
+  countDownElement.innerHTML = "";
+  countDownElement.style.visibility = "hidden";
+}
+
+// End of setup/functions
+
+
+
 //charts button desktop
 var chartBtn = document.getElementById("desktop-charts-btn");
 
@@ -17,7 +59,6 @@ mobileChartBtn.addEventListener("click", function(){
 
 
 const soundButton = document.querySelector(".sound-icon");
-
 
 var startGame = false;
 var levelCount = 1;
@@ -49,6 +90,8 @@ var $hideMobileStatus = $("#hide-mobile-status");
 
 var points =  0;
 var wrongWords = 0;
+
+var currentHighSocre = document.getElementById("high-score").value;
 
 
 // difficulty vaules
@@ -243,6 +286,7 @@ checkModeStatusMobile();
 
 
 startButton.addEventListener("click", function() {
+setInterval(updateCountdown, 1000);
 
   // changing visibility
   document.getElementById("pressPlay").style.cssText = "visibility: hidden;";
@@ -258,6 +302,9 @@ startButton.addEventListener("click", function() {
 });
 
 playAgain.addEventListener("click", function() {
+    startingMinutes = 2;
+    time = startingMinutes * 60;
+
     playAgain.style.cssText = "visibility: hidden;";
     document.getElementById("answerButton").style.cssText = "visibility: visible;";
     document.getElementById("inputBox").style.cssText = "visibility: visible;";
@@ -323,6 +370,7 @@ playAgain.addEventListener("click", function() {
 
 function playGame() {
 
+
   if(wrongAnswerFlag === false)
   {
     noErrors()
@@ -338,9 +386,24 @@ function playGame() {
 
 //function checks word
 submitButton.addEventListener("click", function(arrayNumber) {
+
   var userInput = document.querySelector("input").value;
 
   if (userInput.toLocaleLowerCase().split(" ").join("") === randomWord) {
+
+    // Adds time to timer
+    if(easyMode === true){
+
+      addSeconds(4)
+    }
+    else if(normalMode === true){
+      addSeconds(4)
+
+    }else if(hardMode === true){
+
+      addSeconds(5)
+    }
+
     points = points + 10;
     correctWords++;
     pointsDisplay.innerText = points;
@@ -400,12 +463,12 @@ function displayWord(wordList) {
     //apiGetDefinition(randomWord);
 
     wordList.splice(arrayNumber, 1);
+
     //console.log("new word:"+ randomWord);
   }else if (wordList.length > 1 && hideMode === true) {
 
     var arrayNumber = Math.floor(Math.random() * wordList.length);
     var maxWords = wordList.length;
-    //h1Saying.innerText = wordList[arrayNumber];
 
     randomWord = wordList[arrayNumber];
 
@@ -419,6 +482,7 @@ function displayWord(wordList) {
     wordList.pop();
   }
 
+
 }
 
 
@@ -427,7 +491,6 @@ function displayWord(wordList) {
 function hideWord() {
   h1Saying.innerText = "";
 }
-
 
 
   // if user clicks sound icon
@@ -666,41 +729,45 @@ function noErrors()
 
   wrongAnswerFlag = false;
 
-  if (startGame === true && normalMode === true && points < 100 && wrongWords != 3) {
+  if (startGame === true && normalMode === true &&  wrongWords !== 3 && time !== 0) {
     h1Saying.innerText = "Next word is";
     wordDefinition.innerText = "";
 
     setTimeout(displayWord(normalList), 3000);
     setTimeout(hideWord, 3000);
   }
-  else if(startGame === true && easyMode === true && points < 100 && wrongWords != 3) {
+  else if(startGame === true && easyMode === true && wrongWords !== 3 && time !== 0) {
     h1Saying.innerText = "Next word is";
     wordDefinition.innerText = "";
     setTimeout(displayWord(easyList), 3000);
     setTimeout(hideWord, 3000);
   }
-  else if(startGame === true && hardMode === true && points < 100 && wrongWords != 3)
+  else if(startGame === true && hardMode === true && wrongWords !== 3 && time !== 0)
   {
     h1Saying.innerText = "Next word is";
     wordDefinition.innerText = "";
     setTimeout(displayWord(hardList), 3000);
     setTimeout(hideWord, 3000);
   }
-   else if (points === 100) {
-    h1Saying.innerText = "YOU WIN!";
+   else if (time === 0 && points > currentHighSocre || wrongWords <= 3 && points > currentHighSocre) {
+
+    hideTimer()
+    h1Saying.innerText = "New High Score! "+points;
     wordDefinition.innerHTML = "";
     document.getElementById("answerButton").style.cssText = "visibility: hidden;";
     document.getElementById("inputBox").style.cssText = "visibility: hidden;";
     document.getElementById("sound-icon").style.cssText = "visibility: hidden;";
     document.getElementById("playAgain-btn").style.cssText = "visibility: visible;";
 
+    sendPoints();
     let audioWin = new Audio("sounds/applause.mp3")
     audioWin.play();
-    sendPoints();
-
     startGame = false;
-  } else if(wrongWords === 3){
-    h1Saying.innerText = "YOU LOSE!";
+
+  } else if(wrongWords <= 3 && points < currentHighSocre || time === 0 && points < currentHighSocre){
+
+    hideTimer()
+    h1Saying.innerText = "Score "+points;
     document.getElementById("answerButton").style.cssText = "visibility: hidden;";
     document.getElementById("inputBox").style.cssText = "visibility: hidden;";
     document.getElementById("sound-icon").style.cssText = "visibility: hidden;";
@@ -718,13 +785,12 @@ function noErrors()
 
 
 
-
-
 /// sendin data function
 function sendPoints(){
 
 const ship = {
    points: points,
+   level: {easy: easyMode, normal: normalMode, hard: hardMode}
 };
 
 fetch("/points", {
