@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
 
-
-
-
 body {
   background-image: url("https://wallpaperaccess.com/full/1145374.jpg");
   background: cover;
@@ -231,26 +228,6 @@ color: #f05945;
 
 /* end of mobile */
 
-
-
-/*   timer    */
-#timer-function {
-  align-items: center;
-  background-color: #fff;
-  display: inline-flex;
-  font-size: 30px;
-  font-family: 'Anton', sans-serif;
-  height: 50px;
-  justify-content: center;
-  margin: 0;
-  width: 130px;
-  margin: auto;
-  visibility: hidden;
-  position: relative;
-  top: 50px;
-}
-/*   end of timer    */
-
 @media (min-width: 720px){
 
   .second-menu {
@@ -440,26 +417,6 @@ color: #f05945;
     top: 380px;
     width: 600px;
   }
-
-
-  /*   timer    */
-  #timer-function {
-    align-items: center;
-    background-color: #fff;
-    display: inline-flex;
-    font-size: 40px;
-    font-family: 'Anton', sans-serif;
-    height: 70px;
-    justify-content: center;
-    margin: 0;
-    width: 130px;
-    margin: auto;
-    visibility: hidden;
-    position: relative;
-    top: 130px;
-  }
-  /*   end of timer    */
-
 
 }
 /* end of tablet layout*/

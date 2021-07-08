@@ -126,7 +126,7 @@ app.post("/forgot-password", (req, res, next)=>{
         res.redirect("/forgot-password?error=true");
       }else{
         sendingBoy(foundUser._id)
-
+        console.log(foundUser);
       }
 
 
@@ -149,8 +149,8 @@ const secret =  JWT_SECRET;
 
 
     const token = jwt.sign(payload, secret, {expiresIn: "15m"});
-    const link = "https://www.pogiee.com/reset-password/"+newID+"/"+token;
-    const text = "You are receiving this because you (or someone else) have requested the reset of the password of your pogiee account."+
+    const link = "http://www.pogiee.com/reset-password/"+newID+"/"+token;
+    const text = "You are receiving this because you (or someone else) have requsted the reset of the password of your pogiee account."+
                  "Please click on the following link, or paste this into your browser to complete the process. If you did not request a password "+
                  "reset then contact Pogiee suppoprt."+"\n\n"+link
 
@@ -660,7 +660,7 @@ app.get("/game", function(req, res){
        if(err){
          console.log(err)
        }else{
-         res.render("game", {content: "Welcome to Pogiee!", mode: req.user.hideMode, easyMode: req.user.easyMode, normalMode: req.user.normalMode, hardMode: req.user.hardMode, points: req.user.points});
+         res.render("game", {content: "Welcome to Pogiee!", mode: req.user.hideMode, easyMode: req.user.easyMode, normalMode: req.user.normalMode, hardMode: req.user.hardMode,});
        }
   });
 
@@ -701,7 +701,34 @@ app.get("/profile", function(req, res){
              }
              else{
                if(foundUser){
+                if(foundUser.level === "Newbie"){
+                  nextLevelPoints = 1000;
+                  nextLevel = "Novice";
 
+                }else if(foundUser.level === "Novice"){
+                  nextLevelPoints = 2000;
+                  nextLevel = "Amateur";
+                }else if(foundUser.level === "Amateur"){
+                  nextLevelPoints = 3000;
+                  nextLevel = "Exceptional";
+                }else if(foundUser.level === "Exceptional"){
+                  nextLevelPoints = 4000;
+                  nextLevel = "Scholar";
+                }else if(foundUser.level === "Scholar"){
+                  nextLevelPoints = 5000;
+                  nextLevel = "Lengendary";
+                }else if(foundUser.level === "Lengendary"){
+                  nextLevelPoints = 6000;
+                  nextLevel = "Mythic";
+                }else if(foundUser.level === "Mythic"){
+                  nextLevelPoints = 7000;
+                  nextLevel = "Big Brain";
+                }else if(foundUser.level === "Big Brain"){
+                  nextLevelPoints = 0;
+                  nextLevel = "?";
+                }else{
+                  console.log("Error: sonething wrong with level");
+                }
 
                  res.render("profile", {
                    username: foundUser.nickname,
@@ -854,7 +881,7 @@ app.post("/register", function(req, res){
   let databaseID;
 
 
- User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "", status: "Active", hideMode: false, easyMode: false, normalMode: true, hardMode: false}, req.body.password, function(err, user){
+ User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "Newbie", status: "Active", hideMode: false, easyMode: false, normalMode: true, hardMode: false}, req.body.password, function(err, user){
        if(err){
          console.log(err)
          res.redirect("/register?error=true");
@@ -928,25 +955,31 @@ app.post("/login", function(req, res){
 
 app.post("/points", function(req, res){
 let currentPoints = req.user.points;
-let newPoints = req.body.points;
+let points = req.body.points;
 let level = "";
-let easyMode = req.body.level.easy;
-let normalMode = req.body.level.normal;
-let hardMode = req.body.level.hard;
 let data = req.body;
 
+const newPoints = currentPoints + points;
 
-
-
-if(easyMode === true){
- level = "Easy";
-}else if(normalMode === true){
- level = "Normal";
-}else if(hardMode === true){
- level = "Hard";
+if(newPoints >= 0 && newPoints < 1000){
+ level = "Newbie";
+}else if(newPoints >= 1000 && newPoints < 2000){
+  level = "Novice";
+}else if(newPoints >= 2000 && newPoints < 4000){
+  level = "Amateur";
+}else if(newPoints >= 4000 && newPoints < 6000){
+  level = "Exceptional";
+}else if(newPoints >= 6000 && newPoints < 9000){
+  level = "Scholar";
+}else if(newPoints >= 9000 && newPoints < 1300){
+  level = "Lengendary";
+}else if(newPoints >= 13000 && newPoints < 17000){
+  level = "Mythic";
+}else if(newPoints >= 25000){
+  level = "Big Brain";
 }
 
-if(newPoints > currentPoints){
+
   User.findByIdAndUpdate(req.user.id, {points: newPoints, level: level}, function(err, foundUser){
     if(err){
       console.log(err)
@@ -956,10 +989,7 @@ if(newPoints > currentPoints){
          res.redirect("/game");
       }
     }
-  });
-}else{
-  //do nothing
-}
+  })
 
 
 });

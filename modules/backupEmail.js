@@ -150,7 +150,7 @@ const secret =  JWT_SECRET;
 
     const token = jwt.sign(payload, secret, {expiresIn: "15m"});
     const link = "https://www.pogiee.com/reset-password/"+newID+"/"+token;
-    const text = "You are receiving this because you (or someone else) have requsted the reset of the password of your pogiee account."+
+    const text = "You are receiving this because you (or someone else) have requested the reset of the password of your pogiee account."+
                  "Please click on the following link, or paste this into your browser to complete the process. If you did not request a password "+
                  "reset then contact Pogiee suppoprt."+"\n\n"+link
 
@@ -701,34 +701,7 @@ app.get("/profile", function(req, res){
              }
              else{
                if(foundUser){
-                if(foundUser.level === "Newbie"){
-                  nextLevelPoints = 1000;
-                  nextLevel = "Novice";
 
-                }else if(foundUser.level === "Novice"){
-                  nextLevelPoints = 2000;
-                  nextLevel = "Amateur";
-                }else if(foundUser.level === "Amateur"){
-                  nextLevelPoints = 3000;
-                  nextLevel = "Exceptional";
-                }else if(foundUser.level === "Exceptional"){
-                  nextLevelPoints = 4000;
-                  nextLevel = "Scholar";
-                }else if(foundUser.level === "Scholar"){
-                  nextLevelPoints = 5000;
-                  nextLevel = "Lengendary";
-                }else if(foundUser.level === "Lengendary"){
-                  nextLevelPoints = 6000;
-                  nextLevel = "Mythic";
-                }else if(foundUser.level === "Mythic"){
-                  nextLevelPoints = 7000;
-                  nextLevel = "Big Brain";
-                }else if(foundUser.level === "Big Brain"){
-                  nextLevelPoints = 0;
-                  nextLevel = "?";
-                }else{
-                  console.log("Error: sonething wrong with level");
-                }
 
                  res.render("profile", {
                    username: foundUser.nickname,
@@ -881,7 +854,7 @@ app.post("/register", function(req, res){
   let databaseID;
 
 
- User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "unknown", status: "Active", hideMode: false, easyMode: false, normalMode: true, hardMode: false}, req.body.password, function(err, user){
+ User.register({username: req.body.username, nickname: req.body.nickname, points: 0, level: "", status: "Active", hideMode: false, easyMode: false, normalMode: true, hardMode: false}, req.body.password, function(err, user){
        if(err){
          console.log(err)
          res.redirect("/register?error=true");
@@ -957,9 +930,21 @@ app.post("/points", function(req, res){
 let currentPoints = req.user.points;
 let newPoints = req.body.points;
 let level = "";
+let easyMode = req.body.level.easy;
+let normalMode = req.body.level.normal;
+let hardMode = req.body.level.hard;
 let data = req.body;
 
-console.log(req.body);
+
+
+
+if(easyMode === true){
+ level = "Easy";
+}else if(normalMode === true){
+ level = "Normal";
+}else if(hardMode === true){
+ level = "Hard";
+}
 
 if(newPoints > currentPoints){
   User.findByIdAndUpdate(req.user.id, {points: newPoints, level: level}, function(err, foundUser){
@@ -972,9 +957,8 @@ if(newPoints > currentPoints){
       }
     }
   });
-
 }else{
-  // do nothing
+  //do nothing
 }
 
 
